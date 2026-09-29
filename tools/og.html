@@ -16,30 +16,46 @@
 @font-face{font-family:"Zpix-sub";src:url("fonts/zpix-subset.woff2") format("woff2");font-weight:400;font-style:normal}
 @font-face{font-family:"PS2P-sub";src:url("fonts/pressstart-subset.woff2") format("woff2");font-weight:400;font-style:normal}
 *{margin:0;padding:0;box-sizing:border-box}
-body{width:1200px;height:630px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#fff;color:#0d0d0d;position:relative;overflow:hidden}
-.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(13,13,13,.06) 1px,transparent 1px);background-size:14px 14px;-webkit-mask-image:linear-gradient(115deg,rgba(0,0,0,.9),transparent 60%)}
-.in{position:relative;padding:70px 84px 0;height:100%;display:flex;flex-direction:column}
+:root{--sao:#54c8ff}
+body{width:1200px;height:630px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#04070f;color:#e8f4ff;position:relative;overflow:hidden}
+.grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(84,200,255,.05) 0 1px,transparent 1px 44px),repeating-linear-gradient(90deg,rgba(84,200,255,.05) 0 1px,transparent 1px 44px)}
+.glow{position:absolute;width:820px;height:420px;left:-180px;top:-160px;background:radial-gradient(closest-side,rgba(42,120,220,.28),transparent);filter:blur(10px)}
+.win{position:absolute;inset:26px;border:1px solid rgba(84,200,255,.42);border-radius:6px;background-image:
+  linear-gradient(var(--sao),var(--sao)),linear-gradient(var(--sao),var(--sao)),
+  linear-gradient(var(--sao),var(--sao)),linear-gradient(var(--sao),var(--sao)),
+  linear-gradient(var(--sao),var(--sao)),linear-gradient(var(--sao),var(--sao)),
+  linear-gradient(var(--sao),var(--sao)),linear-gradient(var(--sao),var(--sao)),
+  linear-gradient(165deg,rgba(14,34,64,.55),rgba(5,12,26,.78));
+  background-size:22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px,auto;
+  background-position:0 0,0 0,100% 0,100% 0,0 100%,0 100%,100% 100%,100% 100%,0 0;
+  background-repeat:no-repeat;
+  box-shadow:0 0 30px rgba(84,200,255,.22),inset 0 0 60px rgba(84,200,255,.05)}
+.in{position:relative;padding:64px 88px 0;height:100%;display:flex;flex-direction:column}
+.bar{display:flex;justify-content:space-between;align-items:center;font-family:"PS2P-sub",monospace;font-size:10px;letter-spacing:.32em;color:rgba(122,204,255,.85);border-bottom:1px dashed rgba(84,200,255,.30);padding-bottom:12px;margin-bottom:34px}
+.bar .ok{display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid var(--sao);border-radius:50%;font-size:9px;letter-spacing:.08em;box-shadow:0 0 10px rgba(84,200,255,.5),inset 0 0 6px rgba(84,200,255,.4)}
 .brand{display:flex;align-items:center;gap:16px}
-.mark{width:44px;height:44px;background:#0d0d0d;display:grid;place-items:center;flex:none}
+.mark{width:44px;height:44px;background:linear-gradient(135deg,#54c8ff,#1668d8);display:grid;place-items:center;flex:none;box-shadow:0 0 14px rgba(84,200,255,.55)}
 .mark svg{width:28px;height:24px}
-.brand .en{font-family:"PS2P-sub",monospace;font-size:13px;letter-spacing:.34em;color:#6e6e80}
-.hair{height:1px;background:#e5e5ea;margin-top:34px}
-h1{margin-top:40px;font-family:"Zpix-sub",sans-serif;font-weight:400;font-size:104px;line-height:1.16;letter-spacing:.02em;color:#0d0d0d}
-.sub{margin-top:24px;font-size:19px;line-height:1.75;color:#6e6e80;max-width:34em}
-.sub b{color:#0d0d0d;font-weight:600}
-.stats{position:absolute;left:84px;right:84px;bottom:66px;display:flex;border-top:1px solid #e5e5ea;padding-top:24px;font-size:16px;color:#6e6e80;white-space:nowrap}
+.brand .en{font-family:"PS2P-sub",monospace;font-size:13px;letter-spacing:.34em;color:#54c8ff;text-shadow:0 0 10px rgba(84,200,255,.55)}
+h1{margin-top:36px;font-family:"Zpix-sub",sans-serif;font-weight:400;font-size:104px;line-height:1.16;letter-spacing:.02em;color:#f2faff;text-shadow:0 0 26px rgba(84,200,255,.42)}
+.sub{margin-top:22px;font-size:19px;line-height:1.75;color:#a8c6e0;max-width:34em}
+.sub b{color:#8adfff;font-weight:600}
+.stats{position:absolute;left:88px;right:88px;bottom:64px;display:flex;border-top:1px solid rgba(84,200,255,.28);padding-top:24px;font-size:16px;color:#a8c6e0;white-space:nowrap}
 .cell{flex:1;display:flex;align-items:baseline;gap:10px}
-.cell+.cell{border-left:1px solid #e5e5ea;padding-left:32px}
-.cell b{font-family:"PS2P-sub",monospace;font-weight:400;font-size:32px;color:#0d0d0d}
-.strip{position:absolute;left:0;right:0;bottom:0;height:14px;background:#0d0d0d}
+.cell+.cell{border-left:1px solid rgba(84,200,255,.28);padding-left:32px}
+.cell b{font-family:"PS2P-sub",monospace;font-weight:400;font-size:32px;color:#54c8ff;text-shadow:0 0 12px rgba(84,200,255,.5)}
+.hp{position:absolute;left:0;right:0;bottom:0;height:10px;background:linear-gradient(90deg,#37e58c 0%,#54c8ff 78%,#ffd76a 100%);box-shadow:0 0 12px rgba(84,200,255,.6)}
+.hp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 60%)}
 </style>
-<div class="dots"></div>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="win"></div>
 <div class="in">
+  <div class="bar"><span>SYSTEM WINDOW // LIFE WALKTHROUGH</span><span class="ok">OK</span></div>
   <div class="brand">
     <span class="mark"><svg viewBox="0 0 7 6" shape-rendering="crispEdges" fill="#fff"><rect x="1" width="2" height="1"/><rect x="4" width="2" height="1"/><rect y="1" width="7" height="2"/><rect x="1" y="3" width="5" height="1"/><rect x="2" y="4" width="3" height="1"/><rect x="3" y="5" width="1" height="1"/></svg></span>
     <span class="en">LIFE WALKTHROUGH</span>
   </div>
-  <div class="hair"></div>
   <h1>人生通关手册</h1>
   <div class="sub">用最少的钱、时间和精力，换回最多的<b>寿命、金钱、时间和人身自由</b>。每条攻略写明花掉什么、换回什么、证据有多硬，来源只引期刊论文和官方文件。</div>
   <div class="stats">
@@ -47,5 +63,5 @@ h1{margin-top:40px;font-family:"Zpix-sub",sans-serif;font-weight:400;font-size:1
     <div class="cell">A 级证据 <b>522</b> 条</div>
     <div class="cell"><b>1796</b> 条原始文献链接</div>
   </div>
-  <div class="strip"></div>
+  <div class="hp"></div>
 </div>

@@ -11,13 +11,26 @@
 
 不用全做：这是按性价比排好的备选单，不是任务清单——挑走一两条就算数，作者自己也没做到其中大部分。
 
-[![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-0d0d0d?style=flat-square)](https://kingkazmax.github.io/HowToLiveBetter/)
-[![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-916%20%E6%9D%A1-4c4c57?style=flat-square)](#目录)
-[![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%20522%20%C2%B7%20B%20292%20%C2%B7%20C%20102-8e8e98?style=flat-square)](#证据分级)
+[![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-0a86d8?style=flat-square)](https://kingkazmax.github.io/HowToLiveBetter/)
+[![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-916%20%E6%9D%A1-1668d8?style=flat-square)](#目录)
+[![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%20522%20%C2%B7%20B%20292%20%C2%B7%20C%20102-2d9fe0?style=flat-square)](#证据分级)
 [![原始文献](https://img.shields.io/badge/%E5%8E%9F%E5%A7%8B%E6%96%87%E7%8C%AE-1796%20%E6%9D%A1%E9%93%BE%E6%8E%A5-8e8e98?style=flat-square)](docs/核实记录/)
 [![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-Unlicense-b6b6bf?style=flat-square)](LICENSE)
 
 ### [打开在线检索页](https://kingkazmax.github.io/HowToLiveBetter/) · [让 AI 照书回答（skill）](skills/life-decision-guide/README.md)
+
+<details>
+<summary><b>KINGKAZMAX 迭代记录</b>——这个 fork 属于我的更新（2026-09）</summary>
+
+| 版本 | 日期 | 更新内容 |
+| --- | --- | --- |
+| v5 | 2026-09-29 | UI 改版为 SAO 系统窗风格：暗色全息面板、青色光边、四角括号，参考开源实现 [SAO-UI](https://sao-ui.github.io)、[DekaFugihara/sao-ui](https://github.com/DekaFugihara/sao-ui)、[SAO Utils](http://sao.gpbeta.com/) |
+| v4 | 2026-09-29 | 整合同类项目素材 7 条（909→916）：个税专项附加扣除、失眠 CBT-I 一线、成年友谊的定期结构、养狗的死亡账等 |
+| v3 | 2026-09-29 | 新增 20 个章节（第 34—53 节，共 301 条）：体检筛查、保险、人情世故、人生时间表、幸福科学、职业与攒钱、婚姻、老年与死亡准备等 |
+| v2 | 2026-09-29 | 更名《人生通关手册》，站点重新设计，移除广告位独立运营；构建脚本与 skill 指向本仓库 |
+| v1 | 原作 | [eternity4719《高性价比人生指南》](https://github.com/eternity4719/HowToLiveBetter)，33 个小节、615 条，Unlicense，向原作致谢 |
+
+</details>
 
 AI 助手 skill 支持 Claude Code 和 Codex。装上后直接问「替朋友担保签不签」，它先查书里的条目再回答，并注明出自第几节第几条。
 
