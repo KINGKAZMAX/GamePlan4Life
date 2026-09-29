@@ -10,3 +10,6 @@ tools/fonts/*.b64
 # 本地工具状态（mimosa 安全扫描插件的会话数据，与书无关）
 .mimosa/
 .agents/
+
+# video2code 插件本地缓存，与书无关
+.v2c/
