@@ -1,7 +1,9 @@
 # 正文一改就重新生成三样，挂到固定的 Release「epub-latest」上，下载链接不变：
-#   EPUB        https://github.com/eternity4719/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.epub
-#   PDF         https://github.com/eternity4719/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.pdf
-#   离线单文件  https://github.com/eternity4719/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.html
+#   EPUB        https://github.com/KINGKAZMAX/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.epub
+#   PDF         https://github.com/KINGKAZMAX/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.pdf
+#   离线单文件  https://github.com/KINGKAZMAX/HowToLiveBetter/releases/download/epub-latest/HowToLiveBetter.html
+# PDF 另发一份到 Pages（见下面的 pages job）：Release 附件一律带 attachment 头强制下载，
+# Pages 不带，浏览器能直接在线翻——https://kingkazmax.github.io/HowToLiveBetter/HowToLiveBetter.pdf
 # PR 只生成并校验，不发布，产物在 Actions 页面的 artifact 里。
 name: 电子书
 
@@ -16,6 +18,8 @@ on:
       - book/**
       - docs/*.md
       - tools/**
+      - robots.txt
+      - sitemap.xml
       - .github/workflows/book.yml
   pull_request:
     paths:
@@ -26,6 +30,8 @@ on:
       - book/**
       - docs/*.md
       - tools/**
+      - robots.txt
+      - sitemap.xml
       - .github/workflows/book.yml
   workflow_dispatch:
 
@@ -136,3 +142,41 @@ jobs:
             dist/HowToLiveBetter.epub \
             dist/HowToLiveBetter.pdf \
             dist/HowToLiveBetter.html --clobber
+
+  # 在线检索页整站 + 刚构建的 PDF 发到 GitHub Pages。Pages 部署方式必须是
+  # 「GitHub Actions」（Settings → Pages → Build and deployment → Source），
+  # 沿用「从分支部署」这个 job 会失败。整棵工作树一起发是为了和旧的分支根目录
+  # 部署保持同一批路径：index.html 运行时要就地 fetch README.md、book/ 和 docs/，
+  # robots.txt、og.png 也都在站上。PDF 放这儿的唯一目的就是在线翻——不进仓库。
+  pages:
+    name: Pages 部署（在线页 + PDF）
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: HowToLiveBetter
+          path: dist
+
+      - run: |
+          rsync -a --exclude='.git' --exclude='dist' ./ site/
+          cp dist/HowToLiveBetter.pdf site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
