@@ -2,3 +2,7 @@
 .junie/
 node_modules/
 dist/
+
+# 像素字体源文件不入库，只留子集（见 tools/fonts/README.md）
+tools/fonts/*.ttf
+tools/fonts/*.b64
