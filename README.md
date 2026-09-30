@@ -4,7 +4,7 @@
 
 # 人生通关手册
 
-原《高性价比人生指南》，KINGKAZMAX fork 后扩充第 34—53 节并重新设计，许可证仍为 Unlicense。
+KINGKAZMAX 著，2026-09 起持续更新。Unlicense，公有领域。
 
 讲怎么活得久、怎么少生病，出了意外怎么救。讲怎么少花冤枉钱，哪些事会让人被骗、摊上官司。讲没工作没钱时能去领什么，开店、开公司、做网站要办什么手续。也讲恋爱结婚生孩子、出国和学手艺。还讲体检筛查和保险怎么买、人情世故和跟机构打交道的规矩、几岁该做什么、前人吃过的亏、经得起验证的老智慧、幸福和心态、职业和钱怎么配、吃饭运动的方案、婚姻怎么经营、退休和死亡的准备、钱花在哪最值、数字时代怎么活、性与生育。<br>
 916 条建议，每条写明花掉什么、换回什么、证据有多硬，来源只引期刊论文和官方文件。
@@ -20,15 +20,11 @@
 ### [打开在线检索页](https://kingkazmax.github.io/HowToLiveBetter/) · [让 AI 照书回答（skill）](skills/life-decision-guide/README.md)
 
 <details>
-<summary><b>KINGKAZMAX 迭代记录</b>——这个 fork 属于我的更新（2026-09）</summary>
+<summary><b>KINGKAZMAX 迭代记录</b>——我的更新（2026-09）</summary>
 
-| 版本 | 日期 | 更新内容 |
-| --- | --- | --- |
-| v5 | 2026-09-29 | UI 改版为 SAO 系统窗风格：暗色全息面板、青色光边、四角括号，参考开源实现 [SAO-UI](https://sao-ui.github.io)、[DekaFugihara/sao-ui](https://github.com/DekaFugihara/sao-ui)、[SAO Utils](http://sao.gpbeta.com/) |
-| v4 | 2026-09-29 | 整合同类项目素材 7 条（909→916）：个税专项附加扣除、失眠 CBT-I 一线、成年友谊的定期结构、养狗的死亡账等 |
-| v3 | 2026-09-29 | 新增 20 个章节（第 34—53 节，共 301 条）：体检筛查、保险、人情世故、人生时间表、幸福科学、职业与攒钱、婚姻、老年与死亡准备等 |
-| v2 | 2026-09-29 | 更名《人生通关手册》，站点重新设计，移除广告位独立运营；构建脚本与 skill 指向本仓库 |
-| v1 | 原作 | [eternity4719《高性价比人生指南》](https://github.com/eternity4719/HowToLiveBetter)，33 个小节、615 条，Unlicense，向原作致谢 |
+- **章节**：33 → 53 节，新增第 34—53 节共 20 个章节
+- **内容**：615 → 916 条（净增 301 条，全部在新章节），其中 7 条整编自同类公开项目；原 33 节持续修正来源与数字
+- **体系**：新增五块——健康管理（体检筛查、吃饭、运动）、钱（保险、职业、攒钱配置、花钱）、关系与心态（人情世故、婚姻经营、幸福科学、心态）、生命周期（人生时间表、老年、死亡准备、性与生育）、方法与查证（机构打交道、后悔研究、老智慧、值得做的事、数字生活）；UI 定稿 SAO 系统窗风格（黑白主色 + HP 绿 / MP 蓝点缀，默认暗色）
 
 </details>
 
@@ -340,4 +336,4 @@ node tools/pdf/build.mjs                   # PDF，另需 pandoc ≥ 3.1 和 typ
 
 ## Star 走势
 
-[![Star History Chart](https://api.star-history.com/svg?repos=eternity4719/HowToLiveBetter&type=Date)](https://star-history.com/#eternity4719/HowToLiveBetter&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=KINGKAZMAX/HowToLiveBetter&type=Date)](https://star-history.com/#KINGKAZMAX/HowToLiveBetter&Date)

@@ -170,7 +170,7 @@ const opf = `<?xml version="1.0" encoding="UTF-8"?>
 <dc:identifier id="pub-id">${BOOK_ID}</dc:identifier>
 <dc:title>${TITLE}</dc:title>
 <dc:language>zh-CN</dc:language>
-<dc:creator>KINGKAZMAX（原作 eternity4719）</dc:creator>
+<dc:creator>KINGKAZMAX</dc:creator>
 <dc:description>${esc(description)}</dc:description>
 <dc:source>${REPO}</dc:source>
 <dc:rights>Unlicense（公有领域）</dc:rights>

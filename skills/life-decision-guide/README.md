@@ -13,7 +13,7 @@
 想在任何目录下都能用，复制到个人 skill 目录：
 
 ```bash
-mkdir -p ~/.claude/skills/life-decision-guide && curl -fsSL -o ~/.claude/skills/life-decision-guide/SKILL.md "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/skills/life-decision-guide/SKILL.md"
+mkdir -p ~/.claude/skills/life-decision-guide && curl -fsSL -o ~/.claude/skills/life-decision-guide/SKILL.md "https://raw.githubusercontent.com/KINGKAZMAX/HowToLiveBetter/main/skills/life-decision-guide/SKILL.md"
 ```
 
 之后直接问「每天通勤两小时值不值」「朋友让我替他担保，签不签」就会触发；也可以显式说「用 life-decision-guide 回答」。
@@ -25,7 +25,7 @@ mkdir -p ~/.claude/skills/life-decision-guide && curl -fsSL -o ~/.claude/skills/
 想在任何目录下都能用，放进 Codex 的自定义提示词目录，之后用 `/life-decision-guide` 调用：
 
 ```bash
-mkdir -p ~/.codex/prompts && curl -fsSL -o ~/.codex/prompts/life-decision-guide.md "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/skills/life-decision-guide/SKILL.md"
+mkdir -p ~/.codex/prompts && curl -fsSL -o ~/.codex/prompts/life-decision-guide.md "https://raw.githubusercontent.com/KINGKAZMAX/HowToLiveBetter/main/skills/life-decision-guide/SKILL.md"
 ```
 
 想让它在所有会话里都生效而不用每次敲斜杠命令，就把这一行加进 `~/.codex/AGENTS.md`：
@@ -39,7 +39,7 @@ mkdir -p ~/.codex/prompts && curl -fsSL -o ~/.codex/prompts/life-decision-guide.
 本地有这个仓库就读本地的 `book/`；没有就现取：
 
 ```bash
-git clone --depth 1 https://github.com/eternity4719/HowToLiveBetter.git "${TMPDIR:-/tmp}/hltb"
+git clone --depth 1 https://github.com/KINGKAZMAX/HowToLiveBetter.git "${TMPDIR:-/tmp}/hltb"
 ```
 
 整本 1.3 MB，浅克隆一次几秒。取不到网络就如实说取不到，不替代正文。
