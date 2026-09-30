@@ -8,8 +8,7 @@
 <meta name="keywords" content="人生攻略,人生通关,长寿,健康,循证,体检,保险,人情世故,总死亡率,省钱,理财,防骗,急救,法律常识,失业救助,劳动仲裁,创业风险,性价比">
 <meta name="author" content="人生通关手册">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-<meta name="theme-color" content="#f5f5f6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#050506" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#050506">
 <link rel="canonical" href="https://kingkazmax.github.io/HowToLiveBetter/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 7' shape-rendering='crispEdges'%3E%3Crect width='7' height='7' fill='%230d0d0d'/%3E%3Cg fill='white'%3E%3Crect x='1' y='1' width='2' height='1'/%3E%3Crect x='4' y='1' width='2' height='1'/%3E%3Crect x='1' y='2' width='5' height='2'/%3E%3Crect x='1.5' y='4' width='4' height='1'/%3E%3Crect x='2.5' y='5' width='2' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E">
 <meta property="og:type" content="website">
@@ -31,7 +30,7 @@
 {"@type":"Book","@id":"https://kingkazmax.github.io/HowToLiveBetter/#book","name":"人生通关手册","url":"https://kingkazmax.github.io/HowToLiveBetter/","inLanguage":"zh-CN","bookFormat":"https://schema.org/EBook","numberOfPages":916,"license":"https://unlicense.org/","abstract":"按性价比排序的循证人生攻略：916 条建议，覆盖长寿防病、意外急救、省钱理财、防骗与法律红线、失业兜底、创业风险、恋爱婚育、出国与技能，以及体检筛查、保险配置、人情世故、人生时间表、幸福与心态、退休和死亡的准备。每条写明成本、收益、证据等级和原始出处，可按钱、时间、毅力三个成本维度检索。","about":["健康","长寿","个人理财","急救","法律常识","消费者保护"],"isAccessibleForFree":true}
 ]}
 </script>
-<script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':false;if(d)document.documentElement.classList.add('dark')}catch(e){}})();</script>
+<script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':true;if(d)document.documentElement.classList.add('dark');var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',d?'#050506':'#f5f5f6')}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -577,7 +576,7 @@ html.dark .badge.plain{color:#b9b9c0}
         <div><button id="reset2">清空筛选</button></div>
       </div>
     </div>
-    <div class="foot">数字口径以条目内标注为准：第 1、2 节是 ACM 或特定死因，第 3、4 节是精力/时间，第 5 节是金钱，第 7 节是金钱与保障，第 8、9 节是金钱与人身自由，互不换算。来源核实过程见 <a href="https://github.com/KINGKAZMAX/HowToLiveBetter/tree/main/docs/%E6%A0%B8%E5%AE%9E%E8%AE%B0%E5%BD%95">docs/核实记录</a>。《人生通关手册》fork 自 eternity4719《高性价比人生指南》并扩充第 34—53 节。Unlicense，公有领域。</div>
+    <div class="foot">数字口径以条目内标注为准：第 1、2 节是 ACM 或特定死因，第 3、4 节是精力/时间，第 5 节是金钱，第 7 节是金钱与保障，第 8、9 节是金钱与人身自由，互不换算。来源核实过程见 <a href="https://github.com/KINGKAZMAX/HowToLiveBetter/tree/main/docs/%E6%A0%B8%E5%AE%9E%E8%AE%B0%E5%BD%95">docs/核实记录</a>。Unlicense，公有领域。</div>
   </div>
 </main>
 
@@ -1279,6 +1278,7 @@ function wire(){
     const dark = !document.documentElement.classList.contains('dark');
     document.documentElement.classList.toggle('dark', dark);
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+    var mt = document.querySelector('meta[name=theme-color]'); if (mt) mt.setAttribute('content', dark ? '#050506' : '#f5f5f6');
   });
 }
 
