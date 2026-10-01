@@ -61,16 +61,21 @@ function repairParens(url, tail) {
 }
 
 function extractUrls(text) {
-  const urls = new Set();
+  const bracket = new Set();
   // 1) 尖括号形式（仓库主流写法）
-  for (const m of text.matchAll(/<(https?:\/\/[^>\s]+)>/g)) urls.add(m[1]);
+  for (const m of text.matchAll(/<(https?:\/\/[^>\s]+)>/g)) bracket.add(m[1]);
   // 2) 裸 URL（兜底），并修复被括号截断的 DOI
+  const bare = [];
   for (const m of text.matchAll(/https?:\/\/[^\s>）)、；。，"']+/g)) {
     const raw = m[0];
     const tail = text.slice(m.index + raw.length, m.index + raw.length + 4);
-    urls.add(repairParens(raw, tail));
+    bare.push(repairParens(raw, tail));
   }
-  return [...urls];
+  // 截断产物判定：某条裸 URL 是另一条（尖括号版或更长的裸版）的前缀时，
+  // 它就是被行内标点截断的残段（Elsevier 的 10.1016/S0140-6736(17)XXXX 型
+  // DOI 内部就含括号），丢弃。
+  const all = [...bracket, ...bare];
+  return [...new Set(all.filter(u => !all.some(v => v !== u && v.startsWith(u) && v.length > u.length)))];
 }
 
 // —— 请求（服务端约束：仅 http/https；拒绝环回/私有/保留地址） ——
