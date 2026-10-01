@@ -102,11 +102,14 @@ function hostBlocked(url) {
   return false;
 }
 
-/** 单链接探测：跟随跳转（≤5 次），返回最终状态码；host 违规返回 'BLOCKED' */
-function probe(url, depth = 0) {
+/** 单链接探测：跟随跳转（≤5 次），返回最终状态码；host 违规返回 'BLOCKED'。
+ *  orig 始终记最初的 URL，跳到哪都汇报它（否则 2026-10-01 出过把 DOI 跳转
+ *  终点的 Sage 中国镜像当原链误报的事）。 */
+function probe(url, depth = 0, orig) {
+  const root = orig || url;
   return new Promise((resolve) => {
-    if (hostBlocked(url)) return resolve({ code: 'BLOCKED', url });
-    if (depth > 5) return resolve({ code: 'TOODEEP', url });
+    if (hostBlocked(url)) return resolve({ code: 'BLOCKED', url: root });
+    if (depth > 5) return resolve({ code: 'TOODEEP', url: root });
     let u;
     try { u = new URL(url); } catch { return resolve({ code: 'BADURL', url }); }
     const mod = u.protocol === 'https:' ? request : requestHTTP;
@@ -124,9 +127,9 @@ function probe(url, depth = 0) {
       if (code >= 300 && code < 400 && loc) {
         const next = new URL(loc, u).href;
         res.resume();
-        return probe(next, depth + 1).then(resolve);
+        return probe(next, depth + 1, root).then(resolve);
       }
-      resolve({ code: String(code), url, finalUrl: u.href });
+      resolve({ code: String(code), url: root, finalUrl: u.href });
     });
     req.on('timeout', () => { req.destroy(); resolve({ code: '000', url }); });
     req.on('error', () => resolve({ code: '000', url }));
