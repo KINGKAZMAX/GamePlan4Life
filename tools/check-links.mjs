@@ -171,7 +171,16 @@ async function worker() {
 await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
 const ok = results.filter(r => /^[23]/.test(r.code));
-const blocked = results.filter(r => r.code === '403' && BOT_BLOCK_HOSTS.has(new URL(r.finalUrl || r.url).hostname));
+// 403 判反爬：起点（如 doi.org）或跳转终点任一命中名单即算——否则 DOI 跳到
+// 未列名的出版商（ahajournals/pnas/wiley…）被 403 时会误报「需人工判断」。
+const bot403 = (r) => {
+  for (const u of [r.url, r.finalUrl]) {
+    if (!u) continue;
+    try { if (BOT_BLOCK_HOSTS.has(new URL(u).hostname)) return true; } catch {}
+  }
+  return false;
+};
+const blocked = results.filter(r => r.code === '403' && bot403(r));
 const other403 = results.filter(r => r.code === '403' && !blocked.includes(r));
 const dead = results.filter(r => ['404', '410', '451'].includes(r.code));
 const suspect = results.filter(r => /^5/.test(r.code));
