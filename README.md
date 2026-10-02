@@ -14,7 +14,7 @@ KINGKAZMAX 著，2026-09 起持续更新。Unlicense，公有领域。
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-101013?style=flat-square)](https://kingkazmax.github.io/HowToLiveBetter/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-925%20%E6%9D%A1-3f3f46?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%20526%20%C2%B7%20B%20297%20%C2%B7%20C%20102-0f9d4f?style=flat-square)](#证据分级)
-[![原始文献](https://img.shields.io/badge/%E5%8E%9F%E5%A7%8B%E6%96%87%E7%8C%AE-1831%20%E6%9D%A1%E9%93%BE%E6%8E%A5-73737d?style=flat-square)](docs/核实记录/)
+[![原始文献](https://img.shields.io/badge/%E5%8E%9F%E5%A7%8B%E6%96%87%E7%8C%AE-1832%20%E6%9D%A1%E9%93%BE%E6%8E%A5-73737d?style=flat-square)](docs/核实记录/)
 [![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-Unlicense-b1b1b8?style=flat-square)](LICENSE)
 
 ### [打开在线检索页](https://kingkazmax.github.io/HowToLiveBetter/) · [让 AI 照书回答（skill）](skills/life-decision-guide/README.md)
