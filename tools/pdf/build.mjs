@@ -3,7 +3,7 @@
 // 需要 pandoc（≥3.1，要有 typst 输出）和 typst（≥0.13）在 PATH 上，或用环境变量 PANDOC、TYPST 指路径。
 // 版面在 tools/pdf/template.typ 里；正文一个字都不改，只做三件事：
 // 去掉「← 回总目录」、给每节的标题挂上锚点、把仓库内的链接改成书内跳转或 GitHub 网址。
-import { writeFileSync, mkdirSync, statSync } from 'node:fs';
+import { writeFileSync, mkdirSync, statSync, copyFileSync } from 'node:fs';
 import { resolve, dirname, posix, basename } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, REPO, SITE, TITLE, read, readBook, gitCommit, buildStamp, stripBackLink } from '../lib/book.mjs';
@@ -91,6 +91,11 @@ run(PANDOC, [
 ]);
 const log = run(TYPST, ['compile', typFile, OUT, '--root', ROOT]);
 if (log.trim()) console.log(log.trim());
+// 兼容副本：改名 GamePlan4Life 期间，仓库远端 workflow 仍按旧名取产物，等其同步更名后可删。
+{
+  const legacy = OUT.replace(/GamePlan4Life/, 'HowToLiveBetter');
+  if (legacy !== OUT) copyFileSync(OUT, legacy);
+}
 
 const entries = pages.filter(p => bookFiles.includes(p.src))
   .reduce((n, p) => n + p.md.split('\n').filter(l => l.startsWith('### ')).length, 0);

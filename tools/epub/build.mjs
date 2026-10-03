@@ -1,7 +1,7 @@
 // 把 README + book/*.md + docs/*.md 打成一本 EPUB 3。
 // 用法：node tools/epub/build.mjs [输出路径]   默认输出 dist/GamePlan4Life.epub
 // 只依赖 marked；zip 自己写（EPUB 要求 mimetype 第一个且不压缩，通用 zip 库不一定保证）。
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { resolve, dirname, posix } from 'node:path';
 import { deflateRawSync } from 'node:zlib';
 import { Marked, Tokenizer } from 'marked';
@@ -212,6 +212,12 @@ const entries = [
 ];
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, zip(entries));
+// 兼容副本：改名 GamePlan4Life 期间，仓库远端 workflow 仍按旧名取产物，
+// 同内容再写一份旧名，等 workflow 同步更名上推后可删。
+{
+  const legacy = OUT.replace(/GamePlan4Life/, 'HowToLiveBetter');
+  if (legacy !== OUT) copyFileSync(OUT, legacy);
+}
 const entryCount = pages.filter(p => p.file.startsWith('ch')).reduce((n, p) => n + p.headings.filter(h => h.depth === 3).length, 0);
 console.log(`已生成 ${OUT}：${bookFiles.length} 节 ${entryCount} 条，附录 ${docFiles.length} 篇，${(entries.reduce((n, e) => n + e.data.length, 0) / 1024 | 0)} KB 未压缩`);
 
