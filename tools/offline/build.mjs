@@ -3,7 +3,7 @@
 // 正文内联进 window.__CORPUS__，index.html 的 init() 认这个变量就不再发请求；
 // 站内相对链接改成线上地址，侧栏图片转成 data URI，其余一个字不动。
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, basename } from 'node:path';
 import { ROOT, REPO, SITE, read, gitCommit, buildStamp } from '../lib/book.mjs';
 
 const OUT = resolve(ROOT, process.argv[2] ?? 'dist/GamePlan4Life.html');
@@ -62,7 +62,7 @@ mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, html);
 // 兼容副本：改名 GamePlan4Life 期间，仓库远端 workflow 仍按旧名取产物，等其同步更名后可删。
 {
-  const legacy = OUT.replace(/GamePlan4Life/, 'HowToLiveBetter');
+  const legacy = resolve(dirname(OUT), basename(OUT).replace(/GamePlan4Life/, 'HowToLiveBetter'));
   if (legacy !== OUT) copyFileSync(OUT, legacy);
 }
 const kb = n => (n / 1024 | 0) + ' KB';

@@ -93,7 +93,7 @@ const log = run(TYPST, ['compile', typFile, OUT, '--root', ROOT]);
 if (log.trim()) console.log(log.trim());
 // 兼容副本：改名 GamePlan4Life 期间，仓库远端 workflow 仍按旧名取产物，等其同步更名后可删。
 {
-  const legacy = OUT.replace(/GamePlan4Life/, 'HowToLiveBetter');
+  const legacy = resolve(dirname(OUT), basename(OUT).replace(/GamePlan4Life/, 'HowToLiveBetter'));
   if (legacy !== OUT) copyFileSync(OUT, legacy);
 }
 
