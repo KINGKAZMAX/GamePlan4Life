@@ -1,6 +1,6 @@
 ---
 name: life-decision-guide
-description: 用《人生通关手册》(github.com/KINGKAZMAX/HowToLiveBetter) 的正文回答具体的人生决策：该不该做、值不值、怎么选、出事了先做什么、能领哪笔钱、这么干犯不犯法。先把相关条目查出来再答，按成本（钱/时间/毅力）、收益量级和证据等级 A/B/C 排序，每条都注明出自第几节第几条。触发词：该不该、值不值、要不要、划不划算、怎么选、帮我决定、这样犯法吗、能领什么、先做什么、性价比。
+description: 用《人生通关手册》(github.com/KINGKAZMAX/GamePlan4Life) 的正文回答具体的人生决策：该不该做、值不值、怎么选、出事了先做什么、能领哪笔钱、这么干犯不犯法。先把相关条目查出来再答，按成本（钱/时间/毅力）、收益量级和证据等级 A/B/C 排序，每条都注明出自第几节第几条。触发词：该不该、值不值、要不要、划不划算、怎么选、帮我决定、这样犯法吗、能领什么、先做什么、性价比。
 ---
 
 # 人生决策：按《人生通关手册》查了再答
@@ -27,13 +27,13 @@ description: 用《人生通关手册》(github.com/KINGKAZMAX/HowToLiveBetter) 
 **远程**：没有就现取。整本 1.3 MB，浅克隆一次最省事，后面所有命令都能照常用：
 
 ```bash
-git clone --depth 1 https://github.com/KINGKAZMAX/HowToLiveBetter.git "${TMPDIR:-/tmp}/hltb"
+git clone --depth 1 https://github.com/KINGKAZMAX/GamePlan4Life.git "${TMPDIR:-/tmp}/hltb"
 ```
 
 不能用 git 时按文件取（文件名里的中文直接写就行）：
 
 ```bash
-curl -fsSL --compressed "https://raw.githubusercontent.com/KINGKAZMAX/HowToLiveBetter/main/book/02-不要慢慢死.md"
+curl -fsSL --compressed "https://raw.githubusercontent.com/KINGKAZMAX/GamePlan4Life/main/book/02-不要慢慢死.md"
 ```
 
 这两条都走不通，就说明取不到正文，如实告诉用户，不要凭印象复述书的内容。

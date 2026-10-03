@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-export const REPO = 'https://github.com/KINGKAZMAX/HowToLiveBetter';
-export const SITE = 'https://kingkazmax.github.io/HowToLiveBetter/';
+export const REPO = 'https://github.com/KINGKAZMAX/GamePlan4Life';
+export const SITE = 'https://kingkazmax.github.io/GamePlan4Life/';
 export const TITLE = '人生通关手册';
 export const RELEASE = `${REPO}/releases/download/epub-latest`;
 

@@ -1,5 +1,5 @@
 // 把 README + book/*.md + docs/*.md 排成一本 PDF：pandoc 把 Markdown 转成 typst，typst 排版。
-// 用法：node tools/pdf/build.mjs [输出路径]   默认输出 dist/HowToLiveBetter.pdf
+// 用法：node tools/pdf/build.mjs [输出路径]   默认输出 dist/GamePlan4Life.pdf
 // 需要 pandoc（≥3.1，要有 typst 输出）和 typst（≥0.13）在 PATH 上，或用环境变量 PANDOC、TYPST 指路径。
 // 版面在 tools/pdf/template.typ 里；正文一个字都不改，只做三件事：
 // 去掉「← 回总目录」、给每节的标题挂上锚点、把仓库内的链接改成书内跳转或 GitHub 网址。
@@ -8,7 +8,7 @@ import { resolve, dirname, posix, basename } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, REPO, SITE, TITLE, read, readBook, gitCommit, buildStamp, stripBackLink } from '../lib/book.mjs';
 
-const OUT = resolve(ROOT, process.argv[2] ?? 'dist/HowToLiveBetter.pdf');
+const OUT = resolve(ROOT, process.argv[2] ?? 'dist/GamePlan4Life.pdf');
 const WORK = resolve(ROOT, 'dist/pdf-build.md');
 const PANDOC = process.env.PANDOC ?? 'pandoc';
 const TYPST = process.env.TYPST ?? 'typst';

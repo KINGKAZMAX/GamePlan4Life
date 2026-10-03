@@ -1,12 +1,12 @@
 // 把 index.html + README + book/*.md 打成一个自包含的 HTML：双击就能看，不用服务器、不用联网。
-// 用法：node tools/offline/build.mjs [输出路径]   默认输出 dist/HowToLiveBetter.html
+// 用法：node tools/offline/build.mjs [输出路径]   默认输出 dist/GamePlan4Life.html
 // 正文内联进 window.__CORPUS__，index.html 的 init() 认这个变量就不再发请求；
 // 站内相对链接改成线上地址，侧栏图片转成 data URI，其余一个字不动。
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { ROOT, REPO, SITE, read, gitCommit, buildStamp } from '../lib/book.mjs';
 
-const OUT = resolve(ROOT, process.argv[2] ?? 'dist/HowToLiveBetter.html');
+const OUT = resolve(ROOT, process.argv[2] ?? 'dist/GamePlan4Life.html');
 const STAMP = buildStamp();
 const COMMIT = gitCommit();
 

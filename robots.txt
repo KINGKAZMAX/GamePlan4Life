@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kingkazmax.github.io/HowToLiveBetter/sitemap.xml
+Sitemap: https://kingkazmax.github.io/GamePlan4Life/sitemap.xml

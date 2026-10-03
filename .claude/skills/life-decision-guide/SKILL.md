@@ -8,5 +8,5 @@ description: 用《人生通关手册》的正文回答具体的人生决策：�
 **先读 `skills/life-decision-guide/SKILL.md`（相对仓库根目录），然后完全照它执行。** 读不到那个文件就现取：
 
 ```bash
-curl -fsSL --compressed "https://raw.githubusercontent.com/KINGKAZMAX/HowToLiveBetter/main/skills/life-decision-guide/SKILL.md"
+curl -fsSL --compressed "https://raw.githubusercontent.com/KINGKAZMAX/GamePlan4Life/main/skills/life-decision-guide/SKILL.md"
 ```

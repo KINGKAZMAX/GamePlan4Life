@@ -1,5 +1,5 @@
 // 把 README + book/*.md + docs/*.md 打成一本 EPUB 3。
-// 用法：node tools/epub/build.mjs [输出路径]   默认输出 dist/HowToLiveBetter.epub
+// 用法：node tools/epub/build.mjs [输出路径]   默认输出 dist/GamePlan4Life.epub
 // 只依赖 marked；zip 自己写（EPUB 要求 mimetype 第一个且不压缩，通用 zip 库不一定保证）。
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname, posix } from 'node:path';
@@ -7,8 +7,8 @@ import { deflateRawSync } from 'node:zlib';
 import { Marked, Tokenizer } from 'marked';
 import { ROOT, REPO, SITE, TITLE, read, readBook, gitCommit, buildStamp, stripBackLink } from '../lib/book.mjs';
 
-const OUT = resolve(ROOT, process.argv[2] ?? 'dist/HowToLiveBetter.epub');
-const RELEASE = `${REPO}/releases/download/epub-latest/HowToLiveBetter.epub`;
+const OUT = resolve(ROOT, process.argv[2] ?? 'dist/GamePlan4Life.epub');
+const RELEASE = `${REPO}/releases/download/epub-latest/GamePlan4Life.epub`;
 const BOOK_ID = 'urn:uuid:5c0c1c0e-6a5c-4d2b-9b1e-7d1f0a4e8c31';
 const NOW = new Date();
 const COMMIT = gitCommit();
