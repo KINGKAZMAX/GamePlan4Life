@@ -28,7 +28,7 @@ const TIMEOUT_MS = 12000;
 
 // 已知的反爬域名（403 = 拦自动抓取，不代表页面失效）
 const BOT_BLOCK_HOSTS = new Set([
-  'doi.org', 'www.sciencedirect.com', 'sciencedirect.com',
+  'doi.org', 'www.sciencedirect.com', 'sciencedirect.com', 'bls.gov', 'data.bls.gov',
   'psycnet.apa.org', 'www.apa.org', 'apa.org',
   'www.researchgate.net', 'researchgate.net',
   'journals.sagepub.com', 'link.springer.com', 'www.springer.com',
