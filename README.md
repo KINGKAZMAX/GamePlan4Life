@@ -33,7 +33,7 @@ AI 助手 skill 支持 Claude Code 和 Codex。装上后直接问「替朋友担
 <table>
 <tr><td align="right"><b>下载</b></td><td align="left">
 
-[在线翻 PDF](https://kingkazmax.github.io/GamePlan4Life/HowToLiveBetter.pdf)（浏览器里直接看，也能另存） · [下载 PDF](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.pdf) · [EPUB](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.epub) · [离线单文件（HTML）](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.html)
+[在线翻 PDF](https://kingkazmax.github.io/GamePlan4Life/HowToLiveBetter.pdf)（浏览器里直接看，也能另存） · [下载 PDF](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.pdf) · [EPUB](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.epub) · [离线单文件（HTML）](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.html)
 
 </td></tr>
 <tr><td align="right"><b>查阅</b></td><td align="left">
@@ -129,9 +129,9 @@ AI 助手 skill 支持 Claude Code 和 Codex。装上后直接问「替朋友担
 - **想按条件挑**：打开[在线检索页](https://kingkazmax.github.io/GamePlan4Life/)，可以按关键词、章节、证据等级来筛，也可以按「花不花钱、花多少时间、要不要毅力」这三样筛，几个条件能叠着用。页面上的内容直接取自 book/ 目录里的正文，正文一改，页面跟着改。
 - **条目之间会互相指路**（「见第 8 节第 17 条」这种）：在检索页里，这种指路带一条虚线。点一下，就地显示被指的那条的标题和「说人话」。想真的翻过去，再按「跳过去」。那一条正好被筛选条件藏起来了，页面会自动把筛选清掉。在 GitHub 上直接读正文点不动，但每处指路后面都写着指向什么（「见第 18 条（借钱写清借条）」）。不翻过去也知道说的是哪条。
 - **想按顺序读**：每节内的条目按性价比从高到低排列，从每节前几条开始看就行。
-- **想离线看、想发给别人**：下载 [离线单文件 HTML](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.html)，整本书连同检索和筛选都在这一个文件里，双击就开，不用服务器也不用联网，微信里也能直接传。
+- **想离线看、想发给别人**：下载 [离线单文件 HTML](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.html)，整本书连同检索和筛选都在这一个文件里，双击就开，不用服务器也不用联网，微信里也能直接传。
 - **想打印或在手机上翻**：在浏览器里打开 [PDF](https://kingkazmax.github.io/GamePlan4Life/HowToLiveBetter.pdf) 直接翻，阅读器里就能另存打印（打不开就用上面的下载链接），A4 排版、两百多页，带目录页码和书签，每节另起一页。
-- **想在 Kindle 或其他阅读器上读**：下载 [EPUB 电子书](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.epub)，Kindle 用 Send to Kindle 发过去即可。
+- **想在 Kindle 或其他阅读器上读**：下载 [EPUB 电子书](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.epub)，Kindle 用 Send to Kindle 发过去即可。
 - **三样都是正文每次更新后自动重新生成的**，下载链接固定不变；转发出去的那一份不会跟着更新，以在线版为准。
 - **看不懂那串数字**：每条都有一行「说人话」。它把「收益」栏里那些研究里的写法，翻成「同期死亡的概率低约两成」「拘留几日、罚多少钱」这样的日常说法。它只用「收益」栏已经写到的内容，不添新数字。只看这一行就够拿主意。「收益」栏里原样留着全部数字，想自己核对就看那一栏。
 - **只想看结论最硬的**：在检索页里勾选证据等级 A，只留下有具体数字、来自荟萃分析或大型试验的 532 条。
@@ -152,7 +152,7 @@ AI 助手 skill 支持 Claude Code 和 Codex。装上后直接问「替朋友担
 
 ## 自己跑一份
 
-多数人用不着部署：[在线检索页](https://kingkazmax.github.io/GamePlan4Life/)是现成的，要离线就下[离线单文件 HTML](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/GamePlan4Life.html)，双击就开。
+多数人用不着部署：[在线检索页](https://kingkazmax.github.io/GamePlan4Life/)是现成的，要离线就下[离线单文件 HTML](https://github.com/KINGKAZMAX/GamePlan4Life/releases/download/epub-latest/HowToLiveBetter.html)，双击就开。
 
 真要在自己电脑或服务器上跑：
 
