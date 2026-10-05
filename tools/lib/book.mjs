@@ -50,7 +50,10 @@ export function readBook() {
   const frontMd = between('## 这本书想回答的问题', '## 目录');
   const contentsMd = between('## 目录', '## 正文')
     .split('\n\n').filter(p => !p.includes('index.html')).join('\n\n');
-  const bookFiles = unique([...contentsMd.matchAll(/\]\((book\/[^)#]+\.md)\)/g)].map(m => m[1]));
+  const bookFiles = unique([...contentsMd.matchAll(/\]\((book\/[^)#]+\.md)\)/g)].map(m => m[1]))
+    // 2026-10-05 起 README 目录按六篇分组展示，链接出现顺序不再是节号序；EPUB/PDF
+    // 的章节顺序仍是 1..N 的书脊顺序（docs/章节分类-2026-10.md），这里按文件名数字排回。
+    .sort((a, b) => (parseInt(a.match(/\d+/)?.[0] ?? '0', 10) - parseInt(b.match(/\d+/)?.[0] ?? '0', 10)) || a.localeCompare(b));
   const docFiles = unique([...readme.matchAll(/\]\((docs\/[^)#/]+\.md)\)/g)].map(m => m[1]));
   if (bookFiles.length === 0) throw new Error('README 目录里没找到 book/ 文件');
   return { readme, description, frontMd, contentsMd, bookFiles, docFiles };

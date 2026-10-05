@@ -143,6 +143,9 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
 .sec-link[aria-pressed="true"]{color:var(--brand-1)}
 .sec-link i{font-style:normal;font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
 .sec-link.all{padding-bottom:8px;margin-bottom:4px;border-bottom:1px solid var(--divider)}
+/* 篇标签：章节行前的两字前缀 + 节标题后的篇名，都走灰色，不占 HP 绿和 MP 蓝 */
+.sec-link .pt{font-style:normal;flex:none;font-size:10px;line-height:14px;color:var(--t3);border:1px solid var(--divider);border-radius:3px;padding:2px 4px;margin-right:2px;letter-spacing:1px}
+.sec-h .pt{font-size:13px;font-weight:400;color:var(--t3);margin-left:8px;letter-spacing:.5px;white-space:nowrap}
 /* 章节下的条目目录：只展开选中的那节，没选节时展开正在读的那节（issue #38） */
 .toc-sub{display:flex;flex-direction:column;margin:2px 0 8px;border-left:1px solid var(--divider)}
 .toc-sub a{display:flex;gap:6px;padding:3px 0 3px 12px;margin-left:-1px;border-left:1px solid transparent;font-size:13px;line-height:20px;color:var(--t2);text-decoration:none;transition:color .2s}
@@ -481,6 +484,17 @@ html.dark .badge.plain{color:#b9b9c0}
 <div class="pop" id="pop" role="tooltip" hidden><b></b><span></span></div>
 <aside class="sidebar" id="sidebar">
   <div class="group">
+    <div class="gt">篇 <small>六张地图，可多选</small></div>
+    <div class="chips" data-dim="part">
+      <button class="chip" data-v="hp" aria-pressed="false">血条 HP</button>
+      <button class="chip" data-v="gold" aria-pressed="false">金币 Gold</button>
+      <button class="chip" data-v="ban" aria-pressed="false">红线 No-Ban</button>
+      <button class="chip" data-v="coop" aria-pressed="false">组队 Co-op</button>
+      <button class="chip" data-v="buff" aria-pressed="false">状态 Buffs</button>
+      <button class="chip" data-v="quest" aria-pressed="false">主线 Main Quest</button>
+    </div>
+  </div>
+  <div class="group">
     <div class="gt">章节</div>
     <div class="sec-links" id="f-sec" data-dim="sec"></div>
   </div>
@@ -539,9 +553,9 @@ html.dark .badge.plain{color:#b9b9c0}
     <button class="reset" id="reset">清空筛选</button>
   </div>
   <div class="hint">
-    <p>章节一次只看一个，成本和等级可多选。同一组多选是「或」，不同组之间是「且」。</p>
-    <p>每节内按性价比从高到低排，检索不改变顺序。</p>
-    <p>正文与标签来自仓库 <a href="book/">book/</a> 下的 33 个文件，改正文即改这里。</p>
+    <p>章节一次只看一个，篇、成本和等级可多选。同一组多选是「或」，不同组之间是「且」。</p>
+    <p>每节内按性价比从高到低排，检索不改变顺序。篇是节上面的一层：血条是命，金币是钱，红线是人身自由，组队是家人，状态是心态和精力，主线是人生关口。</p>
+    <p>正文与标签来自仓库 <a href="book/">book/</a> 下的 53 个文件，改正文即改这里。</p>
   </div>
 </aside>
 
@@ -564,6 +578,7 @@ html.dark .badge.plain{color:#b9b9c0}
         <li><b>章节</b> 33 → 53 节：新增第 34—53 节共 20 个章节</li>
         <li><b>内容</b> 615 → 916 条（净增 301 条，全部在新章节），其中 7 条整编自同类公开项目：个税专项附加扣除、失眠的一线疗法 CBT-I、成年友谊的定期见面、养狗的死亡账等；原 33 节持续修正来源与数字</li>
         <li><b>体系</b> 新增五块：健康管理（体检与筛查、怎么吃饭、怎么运动）、钱（保险怎么配、职业怎么选、攒钱与资产配置、钱花在哪最值）、关系与心态（人情世故、婚姻怎么经营、幸福科学、心态与通透）、生命周期（人生时间表、自己的老年、死亡的准备、性与生育）、方法与查证（和机构打交道、后悔与败局研究、经得起验证的老智慧、一生值得做的事、数字时代怎么活）</li>
+        <li><b>导航</b> 目录与检索页按六篇分组：血条 HP、金币 Gold、红线 No-Ban、组队 Co-op、状态 Buffs、主线 Main Quest。检索页左侧可按篇筛选，节号是永久编号，不为分组重排</li>
       </ul></details>
       <div class="doc-links">长文：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E9%81%87%E5%88%B0%E9%99%8C%E7%94%9F%E4%BA%BA%E5%87%BA%E4%BA%8B%E8%AF%A5%E4%B8%8D%E8%AF%A5%E5%81%9C.md">遇到陌生人出事该不该停</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%AE%B6%E5%BA%AD%E5%BA%94%E6%80%A5%E8%A3%85%E5%A4%87%E6%B8%85%E5%8D%95.md">家庭应急装备清单</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%BB%93%E5%A9%9A%E5%88%92%E4%B8%8D%E5%88%92%E7%AE%97.md">结婚划不划算</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%81%9A%E5%B9%B3%E5%8F%B0%E8%A6%81%E5%8A%9E%E5%93%AA%E4%BA%9B%E8%AF%81.md">做平台要办哪些证</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%94%9F%E7%89%A9%E9%92%9F%E5%92%8C%E5%A4%9C%E7%8F%AD.md">生物钟和夜班</a> ·<a href="https://github.com/KINGKAZMAX/GamePlan4Life/tree/main/docs/%E6%A0%B8%E5%AE%9E%E8%AE%B0%E5%BD%95">来源核实记录</a></div>
       <div class="doc-links">AI 助手：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/skills/life-decision-guide/README.md">让 Claude Code 或 Codex 照这本书回答你的问题（skill 装法）</a></div>
@@ -655,6 +670,7 @@ function parseReadme(md){
   }
   flush();
   for (const s of sections) for (const e of s.entries){
+    e.part = PART_OF_SEC[e.sec] ?? '';
     e.dispute = /^争议/.test(e.note);
     e.todo = /待核实|TODO/.test(e.src + e.gain + e.note + e.cost);
     e.cs = (COST_W.money[e.money] ?? 0) + (COST_W.time[e.time] ?? 0) + (COST_W.will[e.will] ?? 0);
@@ -1010,6 +1026,18 @@ addEventListener('resize', () => { POP.hidden = true; });
 
 const COST_W = { money:{'0':0,'少':1,'多':2}, time:{'少':0,'中':1,'多':2}, will:{'否':0,'些':1,'是':2} };
 const LENS_LABEL = {'死亡率':'换寿命','金钱':'换钱','时间':'换时间精力','自由':'换人身自由'};
+/* 六篇：节号是永久 ID，篇只是它上面的一层分组（docs/章节分类-2026-10.md）。
+   54 及以后的新节在这里续写归属，不动节号；README 目录的分组顺序与此一致。 */
+const PARTS = [
+  { id:'hp',    zh:'血条', en:'HP',         secs:[1,2,13,16,24,28,34,46,47,53] },
+  { id:'gold',  zh:'金币', en:'Gold',       secs:[5,6,7,12,15,19,23,35,44,45,51] },
+  { id:'ban',   zh:'红线', en:'No-Ban',     secs:[8,9,11,14,21,26,37] },
+  { id:'coop',  zh:'组队', en:'Co-op',      secs:[10,17,18,20,27,30,36,48] },
+  { id:'buff',  zh:'状态', en:'Buffs',      secs:[3,4,22,39,40,41,42,43,52] },
+  { id:'quest', zh:'主线', en:'Main Quest', secs:[25,29,31,32,33,38,49,50] },
+];
+const PART_OF_SEC = {}; for (const p of PARTS) for (const n of p.secs) PART_OF_SEC[n] = p.id;
+const PART_BY_ID = Object.fromEntries(PARTS.map(p => [p.id, p]));
 /* ---------- 构建 DOM ---------- */
 const LABEL = { money:{'0':'不花钱','少':'花少量钱','多':'花不少钱'}, time:{'少':'顺手','中':'花几小时','多':'每天占时间'}, will:{'否':'不用毅力','些':'要一点毅力','是':'要很多毅力'} };
 let CARDS = [], BLOCKS = [];
@@ -1060,8 +1088,9 @@ function build(sections){
   allBtn.innerHTML = `<span>全部章节</span><i>${sections.reduce((n,s)=>n+s.entries.length,0)}</i>`;
   fsec.appendChild(allBtn);
   for (const s of sections){
+    const pt = PART_BY_ID[PART_OF_SEC[s.n]];
     const b = document.createElement('button'); b.className='sec-link'; b.dataset.v = s.n; b.setAttribute('aria-pressed','false');
-    b.innerHTML = `<span>${s.n}. ${esc(s.title)}</span><i>${s.entries.length}</i><b class="fold" title="展开或收起本节目录"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></b>`; fsec.appendChild(b);
+    b.innerHTML = `<span>${pt ? `<em class="pt">${pt.zh}</em>` : ''}${s.n}. ${esc(s.title)}</span><i>${s.entries.length}</i><b class="fold" title="展开或收起本节目录"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></b>`; fsec.appendChild(b);
     const sub = document.createElement('div'); sub.className = 'toc-sub'; sub.hidden = true;
     for (const e of s.entries){
       const a = document.createElement('a'); a.href = `#e-${e.sec}-${e.n}`; a.dataset.go = `${e.sec}-${e.n}`; a.title = e.title;
@@ -1074,7 +1103,7 @@ function build(sections){
     fsec.appendChild(sub); TOC_SEC.set(s.n, sub);
 
     const block = document.createElement('section'); block.className='sec-block'; block.dataset.sec = s.n; block.id = 'sec-'+s.n;
-    block.innerHTML = `<div class="sec-h"><h2>${s.n}. ${esc(s.title)}</h2><span class="shown"><span class="k"></span> / ${s.entries.length}</span></div>`;
+    block.innerHTML = `<div class="sec-h"><h2>${s.n}. ${esc(s.title)}${pt ? ` <span class="pt">${pt.zh} ${pt.en}</span>` : ''}</h2><span class="shown"><span class="k"></span> / ${s.entries.length}</span></div>`;
     CUR_SEC = s.n;
     for (const para of s.intro){
       const p = document.createElement('p'); p.className = 'intro';
@@ -1130,8 +1159,8 @@ function buildGlossary(){
 }
 
 /* ---------- 筛选状态 ---------- */
-const DIMS = ['sec','ratio','lens','grade','money','time','will'];
-const state = { q:'', sec:new Set(), ratio:new Set(), lens:new Set(), grade:new Set(), money:new Set(), time:new Set(), will:new Set(), dispute:false, todo:false };
+const DIMS = ['sec','part','ratio','lens','grade','money','time','will'];
+const state = { q:'', sec:new Set(), part:new Set(), ratio:new Set(), lens:new Set(), grade:new Set(), money:new Set(), time:new Set(), will:new Set(), dispute:false, todo:false };
 function readUrl(){
   const p = new URLSearchParams(location.search);
   state.q = p.get('q') || '';
@@ -1185,6 +1214,7 @@ function apply(){
     if (ok && state.money.size && !state.money.has(e.money)) ok = false;
     if (ok && state.time.size && !state.time.has(e.time)) ok = false;
     if (ok && state.will.size && !state.will.has(e.will)) ok = false;
+    if (ok && state.part.size && !state.part.has(e.part)) ok = false;
     if (ok && state.dispute && !e.dispute) ok = false;
     if (ok && state.todo && !e.todo) ok = false;
     if (ok && terms.length && !terms.every(t => e.hay.includes(t))) ok = false;
