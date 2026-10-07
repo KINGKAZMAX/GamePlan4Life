@@ -14,7 +14,7 @@ KINGKAZMAX 著，2026-09 起持续更新。Unlicense，公有领域。
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-101013?style=flat-square)](https://kingkazmax.github.io/GamePlan4Life/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-966%20%E6%9D%A1-3f3f46?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%20539%20%C2%B7%20B%20321%20%C2%B7%20C%20106-0f9d4f?style=flat-square)](#证据分级)
-[![原始文献](https://img.shields.io/badge/%E5%8E%9F%E5%A7%8B%E6%96%87%E7%8C%AE-1880%20%E6%9D%A1%E9%93%BE%E6%8E%A5-73737d?style=flat-square)](docs/核实记录/)
+[![原始文献](https://img.shields.io/badge/%E5%8E%9F%E5%A7%8B%E6%96%87%E7%8C%AE-1882%20%E6%9D%A1%E9%93%BE%E6%8E%A5-73737d?style=flat-square)](docs/核实记录/)
 [![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-Unlicense-b1b1b8?style=flat-square)](LICENSE)
 
 ### [打开在线检索页](https://kingkazmax.github.io/GamePlan4Life/) · [让 AI 照书回答（skill）](skills/life-decision-guide/README.md)
@@ -201,7 +201,7 @@ node tools/pdf/build.mjs                   # PDF，另需 pandoc ≥ 3.1 和 typ
 | B | 有研究支持，但说不出一个确切数字；或者只有小样本、单独一项研究撑着 |
 | C | 作者自己的经验，或者大家公认的做法，没有直接的研究文献 |
 
-全书 966 条中 A 级 539 条、B 级 321 条、C 级 106 条，另有 93 条标注了争议、19 处标注了 TODO 待核实。有争议的 A/B 级条目会标注「争议」并列出反方证据。所有来源只引原始文献（期刊论文附 DOI 或 PubMed 链接，或 WHO/CDC/国家统计局等官方机构报告），不引二手转述。不确定的数字标「待核实」。
+全书 966 条中 A 级 539 条、B 级 321 条、C 级 106 条，另有 93 条标注了争议、18 处标注了 TODO 待核实。有争议的 A/B 级条目会标注「争议」并列出反方证据。所有来源只引原始文献（期刊论文附 DOI 或 PubMed 链接，或 WHO/CDC/国家统计局等官方机构报告），不引二手转述。不确定的数字标「待核实」。
 
 ## 性价比档
 
