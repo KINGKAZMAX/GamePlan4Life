@@ -28,7 +28,7 @@ const TIMEOUT_MS = 12000;
 
 // 已知的反爬域名（403 = 拦自动抓取，不代表页面失效）
 const BOT_BLOCK_HOSTS = new Set([
-  'doi.org', 'www.sciencedirect.com', 'sciencedirect.com', 'bls.gov', 'data.bls.gov',
+  'doi.org', 'www.sciencedirect.com', 'sciencedirect.com', 'bls.gov', 'www.bls.gov', 'data.bls.gov',
   'psycnet.apa.org', 'www.apa.org', 'apa.org',
   'www.researchgate.net', 'researchgate.net',
   'journals.sagepub.com', 'link.springer.com', 'www.springer.com',
@@ -38,6 +38,9 @@ const BOT_BLOCK_HOSTS = new Set([
   'www.journals.uchicago.edu', 'journals.uchicago.edu', 'www.cambridge.org',
   'cambridge.org', 'guilfordjournals.com', 'www.jstor.org', 'jstor.org',
   'www.emerald.com', 'ieeexplore.ieee.org', 'dl.acm.org',
+  'www.cdc.gov', 'cdc.gov', 'www.nice.org.uk', 'nice.org.uk',
+  'www.cpsc.gov', 'www.fcc.gov', 'www.spglobal.com', 'journals.lww.com',
+  'www.nhsinform.scot', 'www.ncbi.nlm.nih.gov', 'www.bogleheads.org',
 ]);
 
 const args = process.argv.slice(2);
