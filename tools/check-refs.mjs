@@ -73,6 +73,9 @@ const out = [];
 const problems = [];
 const suspects = [];
 const weak = [];
+// 转述式括号锚点（与目标标题只共享两个字）：指针大概率对，但锚点没落在标题上。
+// 只报告不计数——存量约四十处，逐步改写，不阻塞 CI。
+const softAnchors = [];
 let total = 0;
 
 // 扫描单元：book/ 下每节一个，docs/ 下每篇长文一个。
@@ -219,8 +222,33 @@ for (const { f, dir, isDoc } of targets) {
   };
   // 数字和英文串也是锚点：12356、AED、CT、BMI、LPR 这些常常就是引用要指的东西
   const token = (text, title) => (text.match(/[0-9A-Za-z]{2,}/g) ?? []).some(t => title.includes(t));
+  // 显式括号锚点硬校验：紧跟条号的「（……）」是作者刻意写的指路标注，必须逐字出现在
+  // 目标标题里。2026-10-09 的教训：第 2 节潮热条写着「第 1 节第 39 条（骨密度检查）」，
+  // 但本仓第 1 节第 39 条是乙肝筛查——锚点与目标标题毫不相干，却因为上下文启发式
+  // （长窗口里三个字偶然重合）一路报通过。显式锚点写错就是指错，直接算失效。
+  const parenAnchor = (after, title) => {
+    const m = /^（([^）]{1,40})）/.exec(after);
+    if (!m) return;
+    const core = m[1];
+    if ((core.match(/[一-龥]/g) ?? []).length < 4) return; // 太短的不按硬锚点算
+    if (title.includes(core)) return; // 逐字命中，最稳
+    if (longest(core, title) >= 4) return; // 转述式锚点：与标题共享 4 字以上连续片段
+    // 只共享两个字的转述锚点（「意定监护」对「书面指定将来的监护人」）：指针多半是对的，
+    // 但锚点没落在标题上，错位时察觉不了——记弱锚点，列入清理清单，不阻塞。
+    if (longest(core, title) >= 2) return { core, soft: true };
+    return core; // 一个字都对不上：锚点写的和指的完全两回事，按指错处理
+  };
   for (const r of rows) {
     if (!r.title || r.range) continue;
+    const bad = parenAnchor(r.after, r.title);
+    if (bad) {
+      if (bad.soft) {
+        softAnchors.push(`${f}:${r.line} ${r.from} →「${r.ref}」的锚点「${bad.core}」是转述、没落在目标标题里`);
+      } else {
+        problems.push(`${f}:${r.line} ${r.from} →「${r.ref}」的锚点「${bad}」不在目标标题里——锚点写错等于指错条`);
+      }
+      continue;
+    }
     const wide = r.ctx + r.after;
     if (token(wide, r.title) || longest(wide, r.title) >= 3) continue;
     if (longest(r.narrow + r.after, r.title) >= 2) continue;
@@ -295,8 +323,14 @@ if (process.argv.includes('--suspect') && weak.length) {
   console.log('');
 }
 
+if (process.argv.includes('--suspect') && softAnchors.length) {
+  console.log(`括号锚点是转述、没落在目标标题上（${softAnchors.length} 处，指针多半是对的，建议逐处改成目标标题原词）：`);
+  for (const s of softAnchors) console.log('  ' + s);
+  console.log('');
+}
+
 if (CHECK_ONLY) {
-  const fatal = problems.filter(p => p.includes('该节没有这一条') || p.includes('引用了它自己') || p.includes('相对指路'));
+  const fatal = problems.filter(p => p.includes('该节没有这一条') || p.includes('引用了它自己') || p.includes('相对指路') || p.includes('锚点写错等于指错条'));
   for (const p of fatal) console.log('  ' + p);
   // 裸条号（引用前后没有一个词和目标标题对得上）同样算失败：这种引用一旦被条目顺延
   // 撞歪，谁也看不出来。修法是补个锚点——「见第 16 条（借条和担保）」，
@@ -311,6 +345,11 @@ if (CHECK_ONLY) {
     console.log(`${weak.length} 处引用的锚点只在分句之外偶然对上，等于没有锚点，请补显式标注（跑 --suspect 看清单）：`);
     for (const s of weak.slice(0, 10)) console.log('  ' + s.split('　')[0]);
     if (weak.length > 10) console.log(`  …另有 ${weak.length - 10} 处`);
+  }
+  if (softAnchors.length) {
+    console.log(`${softAnchors.length} 处引用的括号锚点是转述、没落在目标标题上（指针多半对，建议逐步改成标题原词，跑 --suspect 看清单）：`);
+    for (const s of softAnchors.slice(0, 5)) console.log('  ' + s);
+    if (softAnchors.length > 5) console.log(`  …另有 ${softAnchors.length - 5} 处`);
   }
   const bad = fatal.length + suspects.length + weak.length;
   console.log(bad ? `共 ${bad} 处要处理` : `引用检查通过：${total} 处全部指向正确，且都带锚点`);
