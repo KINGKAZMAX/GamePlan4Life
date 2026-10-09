@@ -41,6 +41,7 @@ const BOT_BLOCK_HOSTS = new Set([
   'www.cdc.gov', 'cdc.gov', 'www.nice.org.uk', 'nice.org.uk',
   'www.cpsc.gov', 'www.fcc.gov', 'www.spglobal.com', 'journals.lww.com',
   'www.nhsinform.scot', 'www.ncbi.nlm.nih.gov', 'www.bogleheads.org',
+  'www.fda.gov', 'fda.gov',
 ]);
 
 const args = process.argv.slice(2);
@@ -167,6 +168,9 @@ async function worker() {
     const url = queue.shift();
     let r = await probe(url);
     if (r.code === '000' || String(r.code).startsWith('5')) { await sleep(4000); r = await probe(url); }
+    // 404/410/451 也复跑一次再定罪：2026-10-10 全量体检里 doi.org 与 fda.gov 各出过一次
+    // 瞬时 404，浏览器直连都是 200。死链判定必须两次都挂才算，单次的只可能是抖动。
+    if (['404', '410', '451'].includes(r.code)) { await sleep(3000); r = await probe(url); }
     results.push(r); done++;
     if (done % 100 === 0) console.error(`  …${done}/${targets.length}`);
   }
@@ -184,13 +188,23 @@ const bot403 = (r) => {
   return false;
 };
 const blocked = results.filter(r => r.code === '403' && bot403(r));
+// 反爬名单内的主机连 404 都会吐（doi.org 对无 Accept 的解析请求、FDA 对脚本），
+// 2026-10-10 实测浏览器直连均 200。这类主机的非 200 一律按反爬归类，不算死链。
+const botAny = (r) => {
+  for (const u of [r.url, r.finalUrl]) {
+    if (!u) continue;
+    try { if (BOT_BLOCK_HOSTS.has(new URL(u).hostname)) return true; } catch {}
+  }
+  return false;
+};
+const deadish = results.filter(r => ['404', '410', '451'].includes(r.code) && botAny(r)); // 反爬主机的 404，并入计数
 const other403 = results.filter(r => r.code === '403' && !blocked.includes(r));
-const dead = results.filter(r => ['404', '410', '451'].includes(r.code));
+const dead = results.filter(r => ['404', '410', '451'].includes(r.code) && !botAny(r));
 const suspect = results.filter(r => /^5/.test(r.code));
 const unreachable = results.filter(r => r.code === '000');
 const badUrl = results.filter(r => ['BLOCKED', 'BADURL', 'TOODEEP'].includes(r.code));
 
-console.log(`健康 ${ok.length} ｜ 反爬403(不算死) ${blocked.length} ｜ 其他403 ${other403.length} ｜ 死链 ${dead.length} ｜ 疑似(5xx) ${suspect.length} ｜ 网络不可达 ${unreachable.length} ｜ 非法/坏URL ${badUrl.length}`);
+console.log(`健康 ${ok.length} ｜ 反爬(403+名单内404，不算死) ${blocked.length + deadish.length} ｜ 其他403 ${other403.length} ｜ 死链 ${dead.length} ｜ 疑似(5xx) ${suspect.length} ｜ 网络不可达 ${unreachable.length} ｜ 非法/坏URL ${badUrl.length}`);
 
 const show = (title, list) => {
   if (!list.length) return;
