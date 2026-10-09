@@ -42,6 +42,7 @@ const BOT_BLOCK_HOSTS = new Set([
   'www.cpsc.gov', 'www.fcc.gov', 'www.spglobal.com', 'journals.lww.com',
   'www.nhsinform.scot', 'www.ncbi.nlm.nih.gov', 'www.bogleheads.org',
   'www.fda.gov', 'fda.gov', 'www.shclearing.com.cn', 'shclearing.com.cn', 'europepmc.org',
+  'nccd.cdc.gov', 'gongbao.court.gov.cn', 'www.moj.gov.cn', 'moj.gov.cn',
 ]);
 
 const args = process.argv.slice(2);
@@ -200,11 +201,14 @@ const botAny = (r) => {
 const deadish = results.filter(r => ['404', '410', '451'].includes(r.code) && botAny(r)); // 反爬主机的 404，并入计数
 const other403 = results.filter(r => r.code === '403' && !blocked.includes(r));
 const dead = results.filter(r => ['404', '410', '451'].includes(r.code) && !botAny(r));
-const suspect = results.filter(r => /^5/.test(r.code));
+// 名单内主机的 5xx/TOODEEP 也归反爬：nccd.cdc.gov 的报表页 503 却照发 48KB 全文
+// （状态码配置错），法院公报网 Details 页对脚本做 WAF 跳转循环、浏览器正常。
+const suspect = results.filter(r => /^5/.test(r.code) && !botAny(r));
 const unreachable = results.filter(r => r.code === '000');
-const badUrl = results.filter(r => ['BLOCKED', 'BADURL', 'TOODEEP'].includes(r.code));
+const loopdeep = results.filter(r => r.code === 'TOODEEP' && botAny(r));
+const badUrl = results.filter(r => ['BLOCKED', 'BADURL'].includes(r.code) || (r.code === 'TOODEEP' && !botAny(r)));
 
-console.log(`健康 ${ok.length} ｜ 反爬(403+名单内404，不算死) ${blocked.length + deadish.length} ｜ 其他403 ${other403.length} ｜ 死链 ${dead.length} ｜ 疑似(5xx) ${suspect.length} ｜ 网络不可达 ${unreachable.length} ｜ 非法/坏URL ${badUrl.length}`);
+console.log(`健康 ${ok.length} ｜ 反爬(403+名单内404/5xx/跳转循环，不算死) ${blocked.length + deadish.length + loopdeep.length} ｜ 其他403 ${other403.length} ｜ 死链 ${dead.length} ｜ 疑似(5xx) ${suspect.length} ｜ 网络不可达 ${unreachable.length} ｜ 非法/坏URL ${badUrl.length}`);
 
 const show = (title, list) => {
   if (!list.length) return;
