@@ -41,7 +41,7 @@ const BOT_BLOCK_HOSTS = new Set([
   'www.cdc.gov', 'cdc.gov', 'www.nice.org.uk', 'nice.org.uk',
   'www.cpsc.gov', 'www.fcc.gov', 'www.spglobal.com', 'journals.lww.com',
   'www.nhsinform.scot', 'www.ncbi.nlm.nih.gov', 'www.bogleheads.org',
-  'www.fda.gov', 'fda.gov',
+  'www.fda.gov', 'fda.gov', 'www.shclearing.com.cn', 'shclearing.com.cn', 'europepmc.org',
 ]);
 
 const args = process.argv.slice(2);
