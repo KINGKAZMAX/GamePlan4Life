@@ -11,6 +11,8 @@ KINGKAZMAX 著，2026-09 起持续更新。Unlicense，公有领域。
 
 不用全做：这是按性价比排好的备选单，不是任务清单——挑走一两条就算数，作者自己也没做到其中大部分。
 
+书里的内容可能过时，也可能有错。不少政策各地执行不一样。真去办事、看病、打官司时，以当地部门、医生和律师的说法为准。发现写错了，欢迎[提 issue](https://github.com/KINGKAZMAX/GamePlan4Life/issues)。
+
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-101013?style=flat-square)](https://kingkazmax.github.io/GamePlan4Life/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-997%20%E6%9D%A1-3f3f46?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%20549%20%C2%B7%20B%20339%20%C2%B7%20C%20109-0f9d4f?style=flat-square)](#证据分级)
