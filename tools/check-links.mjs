@@ -38,7 +38,7 @@ const BOT_BLOCK_HOSTS = new Set([
   'www.journals.uchicago.edu', 'journals.uchicago.edu', 'www.cambridge.org',
   'cambridge.org', 'guilfordjournals.com', 'www.jstor.org', 'jstor.org',
   'www.emerald.com', 'ieeexplore.ieee.org', 'dl.acm.org',
-  'www.cdc.gov', 'cdc.gov', 'www.nice.org.uk', 'nice.org.uk',
+  'www.cdc.gov', 'cdc.gov', 'www.nice.org.uk', 'nice.org.uk', 'www.nmpa.gov.cn', 'nmpa.gov.cn',
   'www.cpsc.gov', 'www.fcc.gov', 'www.spglobal.com', 'journals.lww.com',
   'www.nhsinform.scot', 'www.ncbi.nlm.nih.gov', 'www.bogleheads.org',
   'www.fda.gov', 'fda.gov', 'www.shclearing.com.cn', 'shclearing.com.cn', 'europepmc.org',
