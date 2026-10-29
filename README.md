@@ -349,7 +349,7 @@ node tools/pdf/build.mjs                   # PDF，另需 pandoc ≥ 3.1 和 typ
 
 每节内条目按性价比从高到低排列。「不要早死」「不要浪费时间」这类节标题说的是这一节想防住的结果，条目本身要做还是别做，以条目标题为准。长文另见 [docs/家庭应急装备清单.md](docs/家庭应急装备清单.md)、[docs/做平台要办哪些证.md](docs/做平台要办哪些证.md)、[docs/结婚划不划算.md](docs/结婚划不划算.md)、[docs/遇到陌生人出事该不该停.md](docs/遇到陌生人出事该不该停.md)、[docs/生物钟和夜班.md](docs/生物钟和夜班.md) 和 [AI 时代的学习与职业选择](docs/AI时代的学习与职业选择.md)。每条来源的核实过程记录在 [docs/核实记录](docs/核实记录/)。
 
-仓库根目录的 `index.html` 是在线检索页：按关键词、章节、证据等级和成本维度（花钱、花时间、要毅力）筛选条目，数据直接读本文件。首页和顶栏的关键词搜索保持同步，常用英文、繁体主题词可检索简体正文。界面可切换简体中文、繁體中文和 English，选择会保留在本机及分享链接里；正文和来源保持原文。在仓库设置里开启 GitHub Pages（Deploy from a branch，分支 main，目录 /）后即可访问。`tools/epub/` 是电子书生成脚本，`cd tools/epub && npm ci && npm run build` 在本地出一本 EPUB 到 `dist/`；GitHub Actions 在正文改动后自动跑同一个脚本并更新 Release。
+仓库根目录的 `index.html` 是在线检索页：按关键词、章节、证据等级和成本维度（花钱、花时间、要毅力）筛选条目，数据由本文件和 book/ 正文生成。正式站发布时把正文与长文一并打包，避免首次打开时逐章等待。首页和顶栏的关键词搜索保持同步，常用英文、繁体主题词可检索简体正文。界面可切换简体中文、繁體中文和 English，选择会保留在本机及分享链接里；正文和来源保持原文。在仓库设置里开启 GitHub Pages（Deploy from a branch，分支 main，目录 /）后即可访问。`tools/epub/` 是电子书生成脚本，`cd tools/epub && npm ci && npm run build` 在本地出一本 EPUB 到 `dist/`；GitHub Actions 在正文改动后自动跑同一个脚本并更新 Release。
 
 ## 正文
 

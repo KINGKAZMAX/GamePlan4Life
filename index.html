@@ -1702,6 +1702,21 @@ async function readText(path, tries = 3){
   }
 }
 
+// 限制首次加载的并发，避免 53 个章节一起占用连接、在队列中耗尽超时时间。
+// 保留输入顺序；一个文件失败后，已完成的仍留在缓存中，并停止调度新文件。
+async function mapConcurrent(items, worker){
+  const results=new Array(items.length);let cursor=0,failed=false;
+  const run=async()=>{
+    while(!failed&&cursor<items.length){
+      const index=cursor++;
+      try{results[index]=await worker(items[index],index);}
+      catch(error){failed=true;throw error;}
+    }
+  };
+  await Promise.all(Array.from({length:Math.min(6,items.length)},run));
+  return results;
+}
+
 /* ---------- 长文弹窗 ----------
    长文（docs/*.md）原来只能跳 GitHub：要离开页面，回来还得重新定位，而且 GitHub 上
    的长文没有章节目录可点。这里就地渲染，左边给一份可点的目录。
@@ -1909,7 +1924,7 @@ localizeUI();
     if (!files.length) throw new Error('empty');
     let done = 0;
     if (!EMBED) progress(0, files.length);
-    const parts = await Promise.all(files.map(async f => {
+    const parts = await mapConcurrent(files, async f => {
       if (EMBED) {
         const text = EMBED.parts[f];
         if (text === undefined) throw new Error('离线副本里缺 '+f);
@@ -1918,7 +1933,7 @@ localizeUI();
       const text = await readText(f);
       progress(++done, files.length);
       return text;
-    }));
+    });
     const t1 = performance.now();
     const sections = parseReadme(parts.join('\n\n'));
     if (!sections.length) throw new Error('empty');

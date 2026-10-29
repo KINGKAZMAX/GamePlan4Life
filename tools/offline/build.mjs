@@ -6,7 +6,9 @@ import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { resolve, dirname, basename } from 'node:path';
 import { ROOT, REPO, SITE, read, gitCommit, buildStamp } from '../lib/book.mjs';
 
-const OUT = resolve(ROOT, process.argv[2] ?? 'dist/GamePlan4Life.html');
+const args = process.argv.slice(2);
+const SITE_MODE = args.includes('--site');
+const OUT = resolve(ROOT, args.find(arg => arg !== '--site') ?? (SITE_MODE ? 'dist/site-index.html' : 'dist/GamePlan4Life.html'));
 const STAMP = buildStamp();
 const COMMIT = gitCommit();
 
@@ -47,7 +49,7 @@ if (/googletagmanager|google-analytics/.test(html)) throw new Error('剥掉标�
 // 相对链接在本地打开时是死的，改成线上地址
 must('href="README.md"', ' README.md 链接');
 must('href="book/"', ' book/ 链接');
-html = html
+if (!SITE_MODE) html = html
   .replaceAll('href="README.md"', `href="${REPO}/blob/main/README.md"`)
   .replaceAll('href="book/"', `href="${REPO}/tree/main/book"`)
   .replaceAll('<a class="title" href="./"', `<a class="title" href="${SITE}"`);
@@ -56,7 +58,7 @@ html = html
 const foot = '<div class="foot">';
 must(foot, '页脚');
 const commitNote = COMMIT ? `，正文提交 ${COMMIT.slice(0, 7)}` : '';
-html = html.replace(foot, `${foot}离线副本，生成于 ${STAMP}（北京时间）${commitNote}；正文会继续更新，以 <a href="${SITE}">在线版</a> 为准。<br>`);
+if (!SITE_MODE) html = html.replace(foot, `${foot}离线副本，生成于 ${STAMP}（北京时间）${commitNote}；正文会继续更新，以 <a href="${SITE}">在线版</a> 为准。<br>`);
 
 // 正文要在主脚本之前就位
 const mainScript = '\n<script>\n/* ---------- 调试面板';

@@ -59,6 +59,7 @@ jobs:
           node-version: 22
       - run: node tools/check-parser.mjs
       - run: node tools/check-i18n.mjs
+      - run: node tools/check-loading.mjs
 
   # 交叉引用检查。单独一个 job，不挂在 build 里：锚点没补好不该连累 EPUB、PDF 和
   # 离线单文件的发布，那是两回事。PR 上照样红，main 上该发的还是发出去。
@@ -103,7 +104,9 @@ jobs:
         run: node tools/epub/build.mjs
 
       - name: 离线单文件 HTML
-        run: node tools/offline/build.mjs
+        run: |
+          node tools/offline/build.mjs
+          node tools/offline/build.mjs --site
 
       - name: 装 pandoc、typst 和中文字体
         run: |
@@ -137,6 +140,7 @@ jobs:
             dist/HowToLiveBetter.epub
             dist/HowToLiveBetter.pdf
             dist/HowToLiveBetter.html
+            dist/site-index.html
 
       - name: 发布到 Release epub-latest
         if: github.event_name != 'pull_request'
@@ -184,6 +188,7 @@ jobs:
       - run: |
           rsync -a --exclude='.git' --exclude='dist' ./ site/
           cp dist/HowToLiveBetter.pdf site/
+          cp dist/site-index.html site/index.html
 
       - uses: actions/configure-pages@v5
 
