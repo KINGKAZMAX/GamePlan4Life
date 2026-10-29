@@ -13,6 +13,7 @@ on:
     paths:
       - README.md
       - index.html
+      - ui-i18n.js
       - og.png
       - ads/**
       - book/**
@@ -25,6 +26,7 @@ on:
     paths:
       - README.md
       - index.html
+      - ui-i18n.js
       - og.png
       - ads/**
       - book/**
@@ -47,6 +49,17 @@ env:
   TYPST_VERSION: '0.15.1'
 
 jobs:
+  web:
+    name: 网页与三语界面检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/check-parser.mjs
+      - run: node tools/check-i18n.mjs
+
   # 交叉引用检查。单独一个 job，不挂在 build 里：锚点没补好不该连累 EPUB、PDF 和
   # 离线单文件的发布，那是两回事。PR 上照样红，main 上该发的还是发出去。
   # 本地那条链路（sync-stats.ps1）只在 Windows 上跑，而且找不到 node 时会静默跳过，
@@ -150,7 +163,7 @@ jobs:
   # robots.txt、og.png 也都在站上。PDF 放这儿的唯一目的就是在线翻——不进仓库。
   pages:
     name: Pages 部署（在线页 + PDF）
-    needs: build
+    needs: [build, web]
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:

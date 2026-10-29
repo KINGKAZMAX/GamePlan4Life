@@ -31,6 +31,11 @@ const must = (needle, label) => {
   if (!html.includes(needle)) throw new Error(`index.html 里找不到${label}，离线版脚本要跟着改：${needle}`);
 };
 
+// 界面词典也内联，离线副本移动到别处后仍可切换语言。
+const uiScript = '<script src="ui-i18n.js"></script>';
+must(uiScript, '界面语言脚本');
+html = html.replace(uiScript, () => '<script>' + read('ui-i18n.js').replace(/<\/script/gi, '<\\/script') + '</script>');
+
 // 统计脚本不能跟着离线版走：别人双击打开的副本不该往外发请求，断网时还要等超时
 const GA_START = '<!-- ga:start', GA_END = '<!-- ga:end -->';
 must(GA_START, ' GA 片段的起始标记');
