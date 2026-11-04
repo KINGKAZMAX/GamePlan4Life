@@ -203,11 +203,6 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
 .filter-token{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--divider);border-radius:4px;min-height:36px;padding:5px 10px;font-size:12px;color:var(--t1);background:var(--bg-elv);max-width:100%;text-align:left;overflow-wrap:anywhere}
 .filter-token:hover{border-color:var(--mp);color:var(--mp)}
 .filter-token i{font-style:normal;color:var(--t3)}
-.topic-entry{display:flex;align-items:center;gap:16px;padding:16px 18px;margin:22px 0 16px;border:1px solid var(--divider);border-left:3px solid var(--mp);border-radius:4px;background:var(--mp-soft);color:var(--t1);text-decoration:none}
-.topic-entry:hover{border-color:var(--mp);color:var(--t1);text-decoration:none}
-.topic-entry strong{display:block;font-size:16px}
-.topic-entry small{display:block;font-size:13px;color:var(--t2);margin-top:3px}
-.topic-entry>span:last-child{margin-left:auto;white-space:nowrap;color:var(--mp);font-size:13px}
 .backdrop{display:none}
 
 /* content */
@@ -430,8 +425,6 @@ html:not(.dark) .chip[aria-pressed="true"],html:not(.dark) #f-part .chip.cur{bac
   .dm-h a,.dm-h button{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
   .dm-h{padding:8px 12px;gap:6px}
   .dm-h a{font-size:11px;padding:3px 7px}
-  .topic-entry{flex-wrap:wrap;gap:8px;padding:14px}
-  .topic-entry>span:last-child{margin-left:0}
   .doc-head{padding:24px 20px 22px}
   .icon-btn{width:40px;height:40px}
   .nav-r{gap:4px}
@@ -667,7 +660,6 @@ html[lang="en"] .px-zh{font-family:var(--font);font-weight:700;letter-spacing:-.
         <li data-i18n="guide.item3">收益分四档算：你自己、配偶和直系亲属、朋友同事、陌生人。帮助陌生人的回报期望较小，也要考虑风险。</li>
         <li data-i18n="guide.item4">正文里带虚线的「第 X 条」可以点开，就地看那条写了什么。</li>
       </ul></details>
-      <a class="topic-entry doc-links" href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%81%8C%E4%B8%9A%E9%80%89%E6%8B%A9.md"><span><strong data-i18n="topic.title">AI时代的学习与职业选择</strong><small data-i18n="topic.description">学生焦虑、职业变化，以及设计、艺术、动画专业的准备办法</small></span><span data-i18n="topic.read">阅读专题 →</span></a>
       <div class="stat" aria-live="polite">当前显示 <b id="cnt">–</b> 条，共 <span id="tot">–</span> 条</div>
       <div class="meters" aria-hidden="true">
         <div class="meter hp"><span class="lb px-en" data-i18n="meter.entries">HP 条目</span><span class="tr"><i class="fl"></i></span><span class="vl" id="m-hp">– / –</span></div>
@@ -679,7 +671,7 @@ html[lang="en"] .px-zh{font-family:var(--font);font-weight:700;letter-spacing:-.
         <li><b>体系</b> 新增五块：健康管理（体检与筛查、怎么吃饭、怎么运动）、钱（保险怎么配、职业怎么选、攒钱与资产配置、钱花在哪最值）、关系与心态（人情世故、婚姻怎么经营、幸福科学、心态与通透）、生命周期（人生时间表、自己的老年、死亡的准备、性与生育）、方法与查证（和机构打交道、后悔与败局研究、经得起验证的老智慧、一生值得做的事、数字时代怎么活）</li>
         <li><b>导航</b> 目录与检索页按六篇分组：血条 HP、金币 Gold、红线 No-Ban、组队 Co-op、状态 Buffs、主线 Main Quest。检索页正文按篇分段排，点篇名跳到该篇（是导航不是筛选，不隐藏其他内容）；节号是永久编号，不为分组重排</li>
       </ul></details>
-      <div class="doc-links">长文：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E9%81%87%E5%88%B0%E9%99%8C%E7%94%9F%E4%BA%BA%E5%87%BA%E4%BA%8B%E8%AF%A5%E4%B8%8D%E8%AF%A5%E5%81%9C.md">遇到陌生人出事该不该停</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%AE%B6%E5%BA%AD%E5%BA%94%E6%80%A5%E8%A3%85%E5%A4%87%E6%B8%85%E5%8D%95.md">家庭应急装备清单</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%BB%93%E5%A9%9A%E5%88%92%E4%B8%8D%E5%88%92%E7%AE%97.md">结婚划不划算</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%81%9A%E5%B9%B3%E5%8F%B0%E8%A6%81%E5%8A%9E%E5%93%AA%E4%BA%9B%E8%AF%81.md">做平台要办哪些证</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%94%9F%E7%89%A9%E9%92%9F%E5%92%8C%E5%A4%9C%E7%8F%AD.md">生物钟和夜班</a> ·<a href="https://github.com/KINGKAZMAX/GamePlan4Life/tree/main/docs/%E6%A0%B8%E5%AE%9E%E8%AE%B0%E5%BD%95">来源核实记录</a></div>
+      <div class="doc-links">长文：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E9%81%87%E5%88%B0%E9%99%8C%E7%94%9F%E4%BA%BA%E5%87%BA%E4%BA%8B%E8%AF%A5%E4%B8%8D%E8%AF%A5%E5%81%9C.md">遇到陌生人出事该不该停</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%AE%B6%E5%BA%AD%E5%BA%94%E6%80%A5%E8%A3%85%E5%A4%87%E6%B8%85%E5%8D%95.md">家庭应急装备清单</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%BB%93%E5%A9%9A%E5%88%92%E4%B8%8D%E5%88%92%E7%AE%97.md">结婚划不划算</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E5%81%9A%E5%B9%B3%E5%8F%B0%E8%A6%81%E5%8A%9E%E5%93%AA%E4%BA%9B%E8%AF%81.md">做平台要办哪些证</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E7%94%9F%E7%89%A9%E9%92%9F%E5%92%8C%E5%A4%9C%E7%8F%AD.md">生物钟和夜班</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%81%8C%E4%B8%9A%E9%80%89%E6%8B%A9.md">学习与职业准备练习</a> · <a href="https://github.com/KINGKAZMAX/GamePlan4Life/tree/main/docs/%E6%A0%B8%E5%AE%9E%E8%AE%B0%E5%BD%95">来源核实记录</a></div>
       <div class="doc-links">AI 助手：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/skills/life-decision-guide/README.md">让 Claude Code 或 Codex 照这本书回答你的问题（skill 装法）</a></div>
       <details class="gloss" id="gloss"><summary data-i18n="gloss.title">看不懂的缩写和名词</summary><p data-i18n="gloss.help">正文里带虚线的词，点一下或把鼠标放上去就有解释。全表如下。</p><dl></dl></details>
     </div>
@@ -1179,11 +1171,11 @@ const LENS_LABEL = {'死亡率':'换寿命','金钱':'换钱','时间':'换时�
    54 及以后的新节在这里续写归属，不动节号；README 目录的分组顺序与此一致。 */
 const PARTS = [
   { id:'hp',    zh:'血条', en:'HP',         sub:'先保住血条 Guard Your HP',        secs:[1,2,13,16,24,28,34,46,47,53] },
-  { id:'gold',  zh:'金币', en:'Gold',       sub:'攒住你的金币 Save Your Gold',     secs:[5,6,7,12,15,19,23,35,44,45,51] },
+  { id:'gold',  zh:'金币', en:'Gold',       sub:'攒住你的金币 Save Your Gold',     secs:[5,6,7,12,15,19,35,45,51] },
   { id:'ban',   zh:'红线', en:'No-Ban',     sub:'别吃红牌下场 Don\'t Get Banned', secs:[8,9,11,14,21,26,37] },
   { id:'coop',  zh:'组队', en:'Co-op',      sub:'拉一支固定队 Build Your Party',   secs:[10,17,18,20,27,30,36,48] },
   { id:'buff',  zh:'状态', en:'Buffs',      sub:'Buff 常驻不掉 Keep Your Buffs Up',secs:[3,4,22,39,40,41,42,43,52] },
-  { id:'quest', zh:'主线', en:'Main Quest', sub:'打过每一个 Boss Clear Every Boss',secs:[25,29,31,32,33,38,49,50] },
+  { id:'quest', zh:'主线', en:'Main Quest', sub:'打过每一个 Boss Clear Every Boss',secs:[23,25,29,31,32,33,38,44,49,50] },
 ];
 const PART_OF_SEC = {}; for (const p of PARTS) for (const n of p.secs) PART_OF_SEC[n] = p.id;
 const PART_BY_ID = Object.fromEntries(PARTS.map(p => [p.id, p]));
@@ -1246,7 +1238,7 @@ function localizeUI(){
   for(const el of document.querySelectorAll('.toc-sub,.sec-block>.intro,#dm-doc'))el.lang='zh-Hans';
   for(const card of CARDS)localizeBadges(card);
   const hints=document.getElementById('reading-hints');hints.replaceChildren();const hint=document.createElement('p');hint.textContent=T('filter.help');hints.appendChild(hint);
-  const names={'遇到陌生人出事该不该停':'stranger','家庭应急装备清单':'emergency','结婚划不划算':'marriage','做平台要办哪些证':'platform','生物钟和夜班':'shift'};
+  const names={'遇到陌生人出事该不该停':'stranger','家庭应急装备清单':'emergency','结婚划不划算':'marriage','做平台要办哪些证':'platform','生物钟和夜班':'shift','AI时代的学习与职业选择':'learning'};
   const docLinks=document.querySelectorAll('.doc-head>div.doc-links');
   if(docLinks[0]){docLinks[0].firstChild.nodeValue=T('links.longform')+' ';for(const a of docLinks[0].querySelectorAll('a')){let path='';try{path=decodeURIComponent(a.href);}catch{};const name=Object.keys(names).find(n=>path.includes(n));a.textContent=name?T('links.doc.'+names[name]):T('links.verification');}}
   if(docLinks[1]){docLinks[1].firstChild.nodeValue=T('links.aiAssistant')+' ';docLinks[1].querySelector('a').textContent=T('links.skill');}
