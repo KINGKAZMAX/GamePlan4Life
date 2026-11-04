@@ -213,6 +213,25 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
 .doc-head p{margin:0;color:var(--t2);font-size:16px}
 .doc-head .stat{color:var(--t3);font-size:14px;margin-top:6px}
 .doc-head .stat b{color:var(--brand-1);font-weight:600}
+.extra-handbook{margin:0 0 32px;border:1px solid var(--divider);border-radius:6px;background:var(--bg-soft)}
+.extra-handbook>summary{display:flex;align-items:flex-start;gap:12px;min-height:88px;padding:18px 20px;cursor:pointer;list-style:none}
+.extra-handbook>summary::-webkit-details-marker{display:none}
+.extra-handbook>summary::before{content:'＋';flex:none;width:24px;color:var(--mp);font-size:22px;line-height:28px}
+.extra-handbook[open]>summary::before{content:'−'}
+.handbook-heading{display:flex;flex-direction:column;gap:4px;min-width:0}
+.handbook-heading strong{font-size:18px;line-height:28px}
+.handbook-heading>span{font-size:13px;line-height:1.7;color:var(--t2)}
+.extra-handbook-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0 20px 16px}
+.handbook-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;padding:16px;border:1px solid var(--divider);border-radius:4px;background:var(--bg-alt)}
+.handbook-card h3{display:flex;align-items:baseline;gap:8px;margin:0;font-size:16px;line-height:1.5}
+.handbook-card h3>span:first-child{flex:none;color:var(--t3);font:12px var(--mono)}
+.handbook-card p{margin:0 0 2px;font-size:14px;line-height:1.7;color:var(--t2)}
+.handbook-card>a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin-top:auto;padding:8px 14px;border:1px solid var(--divider);border-radius:4px;background:var(--bg-soft);color:var(--t1);font-size:13px;font-weight:600;text-decoration:none;transition:border-color .2s,color .2s}
+.handbook-card>a:hover{border-color:var(--mp);color:var(--brand-2)}
+.extra-handbook>.doc-links{margin:0;padding:0 20px 16px}
+.extra-handbook>.doc-links>a{display:inline-flex;align-items:center;min-height:44px}
+@media(min-width:1200px){.extra-handbook-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.extra-handbook>summary{padding:16px}.extra-handbook-grid{grid-template-columns:1fr;padding:0 16px 12px}.extra-handbook>.doc-links{padding:0 16px 12px}}
 .sec-block{margin-top:40px}
 .sec-h{display:flex;align-items:baseline;gap:12px;padding-top:24px;border-top:1px solid var(--divider);margin-bottom:8px}
 .sec-h h2{font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.02em;margin:0}
@@ -624,6 +643,7 @@ html[lang="en"] .px-zh{font-family:var(--font);font-weight:700;letter-spacing:-.
     <button class="reset" id="reset" data-i18n="filter.clear">清空筛选</button>
   </div>
   </details>
+  <div class="group"><a class="sec-link" href="#extra-handbook" data-handbook-open data-i18n="handbook.title">额外手册</a></div>
   <div class="group">
     <div class="gt"><span data-i18n="filter.chapters">章节</span> <small data-i18n="filter.chapterHint">选一节阅读</small></div>
     <div class="sec-links" id="f-sec" data-dim="sec"></div>
@@ -675,6 +695,42 @@ html[lang="en"] .px-zh{font-family:var(--font);font-weight:700;letter-spacing:-.
       <div class="doc-links">AI 助手：<a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/skills/life-decision-guide/README.md">让 Claude Code 或 Codex 照这本书回答你的问题（skill 装法）</a></div>
       <details class="gloss" id="gloss"><summary data-i18n="gloss.title">看不懂的缩写和名词</summary><p data-i18n="gloss.help">正文里带虚线的词，点一下或把鼠标放上去就有解释。全表如下。</p><dl></dl></details>
     </div>
+    <details id="extra-handbook" class="extra-handbook">
+      <summary id="extra-handbook-summary" aria-label="展开或收起额外手册" data-i18n-aria="handbook.toggle"><span class="handbook-heading"><strong data-i18n="handbook.title">额外手册</strong><span data-i18n="handbook.intro">英语、AI、个人品牌与第二收入、资产安排、主动找信息、换地方生活，六个方向按需选看。</span></span></summary>
+      <ol class="extra-handbook-grid">
+        <li class="handbook-card">
+          <h3 id="handbook-english"><span aria-hidden="true">01</span><span data-i18n="handbook.english">英语用起来</span></h3>
+          <p lang="zh-Hans">读真实专业资料，练习提问邮件和作品介绍。涉及申请或规则的条件，回原文核对。</p>
+          <a id="handbook-read-english" href="#e-23-30" data-handbook-go="23-30" aria-labelledby="handbook-english handbook-read-english" data-i18n="handbook.read">查看正文</a>
+        </li>
+        <li class="handbook-card">
+          <h3 id="handbook-ai"><span aria-hidden="true">02</span><span data-i18n="handbook.ai">AI 融入任务</span></h3>
+          <p lang="zh-Hans">用真实任务比较质量、完整工时和费用，再决定是否订阅。</p>
+          <a id="handbook-read-ai" href="#e-52-19" data-handbook-go="52-19" aria-labelledby="handbook-ai handbook-read-ai" data-i18n="handbook.read">查看正文</a>
+        </li>
+        <li class="handbook-card">
+          <h3 id="handbook-brand"><span aria-hidden="true">03</span><span data-i18n="handbook.brand">个人品牌与第二收入</span></h3>
+          <p lang="zh-Hans">公开项目时写清本人贡献，留好作品副本和联系渠道。第二收入扣除费用和税，核对实际净收入。</p>
+          <a id="handbook-read-brand" href="#e-44-19" data-handbook-go="44-19" aria-labelledby="handbook-brand handbook-read-brand" data-i18n="handbook.read">查看正文</a>
+        </li>
+        <li class="handbook-card">
+          <h3 id="handbook-assets"><span aria-hidden="true">04</span><span data-i18n="handbook.assets">给资产留余地</span></h3>
+          <p lang="zh-Hans">先盘点停工后能及时取用的钱，再核资产集中度和取用条件。外币按生活开支的币种算账。</p>
+          <a id="handbook-read-assets" href="#e-45-19" data-handbook-go="45-19" aria-labelledby="handbook-assets handbook-read-assets" data-i18n="handbook.read">查看正文</a>
+        </li>
+        <li class="handbook-card">
+          <h3 id="handbook-information"><span aria-hidden="true">05</span><span data-i18n="handbook.information">主动找信息</span></h3>
+          <p lang="zh-Hans">查中文和外文的原始来源，比较有证据的不同解释。把改变判断的新证据记下来，再定期回看。</p>
+          <a id="handbook-read-information" href="#e-52-12" data-handbook-go="52-12" aria-labelledby="handbook-information handbook-read-information" data-i18n="handbook.read">查看正文</a>
+        </li>
+        <li class="handbook-card">
+          <h3 id="handbook-mobility"><span aria-hidden="true">06</span><span data-i18n="handbook.mobility">准备换地方生活</span></h3>
+          <p lang="zh-Hans">分别核本人和家属的工作许可、停留条件、住处和医疗。把收入空窗与返回费用也算进去。</p>
+          <a id="handbook-read-mobility" href="#e-31-18" data-handbook-go="31-18" aria-labelledby="handbook-mobility handbook-read-mobility" data-i18n="handbook.read">查看正文</a>
+        </li>
+      </ol>
+      <div class="doc-links"><a href="https://github.com/KINGKAZMAX/GamePlan4Life/blob/main/docs/%E9%A2%9D%E5%A4%96%E6%89%8B%E5%86%8C.md" data-i18n="handbook.full">打开完整手册</a></div>
+    </details>
     <div id="results" tabindex="-1" aria-label="正文与检索结果" data-i18n-aria="results.region">
     <div class="results-tools" id="active-filters" aria-label="已选条件" data-i18n-aria="results.selected"></div>
     <div id="list" aria-busy="true">
@@ -1060,14 +1116,22 @@ function spy(){
   if (spyOff) return;
   clearTimeout(spyT);
   spyT = setTimeout(() => {
+    if (spyOff) return;
     const line = innerHeight * 0.3;        // 判定线取视口偏上三成，和人读的位置差不多
     let hit = '', near = Infinity;
+    const handbook = document.getElementById('extra-handbook');
+    const handbookRect = handbook.getBoundingClientRect();
+    if (handbook.open && handbookRect.top <= line && handbookRect.bottom > line){
+      spyLast = ''; tocSync('');
+      if (location.hash !== '#extra-handbook') history.replaceState(history.state, '', location.pathname + location.search + '#extra-handbook');
+      return;
+    }
     // 还在页首读导读和筛选器时，没有「正在看的那一条」，地址栏就该是干净的。
     // 否则停在最上面也会被记成 #e-1-1，一刷新就滚到第 1 节标题、导读全没了
     // （2026-09-20 用户提的）。判据是第一个节块的顶还在判定线以下。
     const firstBlock = BLOCKS.find(b => b.el.offsetParent)?.el;
     if (firstBlock && firstBlock.getBoundingClientRect().top > line){
-      if (spyLast === '') return;
+      if (spyLast === '' && location.hash !== '#extra-handbook') return;
       spyLast = ''; tocSync('');
       history.replaceState(history.state, '', location.pathname + location.search);
       return;
@@ -1118,6 +1182,13 @@ function scrollAnchor(el){
   const block = el.closest?.('.sec-block');
   return block && el.id === `e-${block.dataset.sec}-1` ? block : el;
 }
+function openHandbook(){
+  const handbook = document.getElementById('extra-handbook');
+  handbook.open = true;
+  clearTimeout(spyT);
+  scrollToEl(handbook, {align:'start', spyId:''});
+  handbook.querySelector('summary').focus({preventScroll:true});
+}
 function gotoItem(key, fromId){
   const sec = key[0] === 's' ? key.slice(1) : '';
   const id = sec ? 'sec-' + sec : `e-${key.split('-')[0]}-${key.split('-')[1]}`;
@@ -1125,6 +1196,7 @@ function gotoItem(key, fromId){
   if (!el) return;
   if (!el.offsetParent){            // 目标被筛选藏起来了，先把筛选清掉再跳
     state.q = ''; for (const d of DIMS) state[d].clear();
+    state.dispute = false; state.todo = false;
     syncControls(); apply(); writeUrl();
   }
   // 把「从哪跳的」写进当前这条历史记录，再推一条新的，这样浏览器后退键和鼠标侧键
@@ -1138,15 +1210,19 @@ function gotoItem(key, fromId){
   history.pushState(null, '', '#' + (first?.id || id));
   if (sec){
     scrollToEl(el, { align: 'start', flashEl: el.querySelector('.sec-h') || el, spyId: first?.id || id, renderEl: first || el });
+    const heading = el.querySelector('.sec-h') || el;
+    heading.tabIndex = -1; heading.focus({preventScroll:true});
     return;
   }
   // 条目一律居中看得清上下文，只有一节的第一条例外：滚它所在的节块、顶部对齐，
   // 这样「第 13 节」和「第 13 节第 1 条」两种指路落在同一屏，闪的还是那张卡片。
   const anchor = scrollAnchor(el);
   scrollToEl(anchor, anchor === el ? {} : { align: 'start', flashEl: el, spyId: el.id, renderEl: el });
+  el.tabIndex = -1; el.focus({preventScroll:true});
 }
 addEventListener('popstate', ev => {
   POP.hidden = true;
+  if (location.hash === '#extra-handbook'){ openHandbook(); return; }
   const st = ev.state; if (!st) return;
   const back = st.xrefFrom && document.getElementById(st.xrefFrom);
   if (back) scrollToEl(back);
@@ -1577,6 +1653,24 @@ function wire(){
     const a = ev.target.closest('a[data-go]'); if (!a) return;
     ev.preventDefault(); setMenu(false); gotoItem(a.dataset.go, spyLast);
   });
+  document.querySelector('[data-handbook-open]').addEventListener('click', ev => {
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
+    ev.preventDefault(); setMenu(false);
+    if (location.hash !== '#extra-handbook'){
+      history.replaceState({xrefFrom:spyLast, xrefY:window.scrollY}, '');
+      history.pushState(null, '', '#extra-handbook');
+    }
+    openHandbook();
+  });
+  document.getElementById('extra-handbook').addEventListener('click', ev => {
+    const a = ev.target.closest('a[data-handbook-go]');
+    if (!a || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
+    ev.preventDefault(); setMenu(false);
+    flushPendingSearch();
+    apply();
+    if (location.hash !== '#extra-handbook') history.replaceState(history.state, '', '#extra-handbook');
+    gotoItem(a.dataset.handbookGo, 'extra-handbook');
+  });
   // 篇是导航不是筛选：点篇名跳到该篇开头，不隐藏任何内容（2026-10-05 用户反馈筛选式不方便阅读）
   document.getElementById('f-part').addEventListener('click', ev => {
     const b = ev.target.closest('[data-p]'); if (!b) return;
@@ -1934,7 +2028,8 @@ localizeUI();
     wire();APP_READY=true;localizeUI();apply();
     document.getElementById('list').setAttribute('aria-busy','false');
     PERF.mark(`DOM 节点 ${document.getElementsByTagName('*').length}，术语 ${GLOSS.length}`);
-    if (location.hash){
+    if (location.hash === '#extra-handbook') openHandbook();
+    else if (location.hash){
       let target = document.getElementById(location.hash.slice(1));
       // 别人分享过来的地址可能带着和 hash 冲突的筛选（老版本拼出来的 ?sec=8#e-11-1），
       // 这时按 hash 办：点链接就是要看那一条，筛选清掉。

@@ -51,3 +51,47 @@ assert.equal(matches('设计专业学生', '设计'), true);
 assert.ok(['设计', 'ai'].every(term => matches('设计专业学生使用AI', term)));
 assert.ok(!['设计', '动画'].every(term => matches('设计专业学生使用AI', term)));
 console.log('检索边界检查通过：AI/HR/OR、中文、混合词、Markdown 文本和多关键词均正确。');
+
+// 从额外手册或交叉引用跳转时，所有会挡住目标的筛选都必须撤下。
+const navigationStart = html.indexOf('function gotoItem(');
+const navigationEnd = html.indexOf("addEventListener('popstate'", navigationStart);
+assert.ok(navigationStart >= 0 && navigationEnd > navigationStart, '找不到正文跳转函数');
+const navigationState = {
+  q: '不会匹配的词', sec: new Set(['1']), grade: new Set(['A']), dispute: true, todo: true,
+};
+const target = {id: 'e-23-30', offsetParent: null, focus(){ this.focused = true; }};
+vm.runInNewContext(html.slice(navigationStart, navigationEnd) + '\ngotoItem("23-30", "extra-handbook");', {
+  state: navigationState, DIMS: ['sec', 'grade'],
+  document: {getElementById(id){ return id === target.id ? target : null; }},
+  history: {replaceState(){}, pushState(){}}, window: {scrollY: 200},
+  syncControls(){}, writeUrl(){}, scrollAnchor: element => element,
+  apply(){
+    if (!navigationState.q && !navigationState.sec.size && !navigationState.grade.size &&
+        !navigationState.dispute && !navigationState.todo) target.offsetParent = {};
+  },
+  scrollToEl(element){ assert.ok(element.offsetParent, '开始跳转时正文仍被筛选隐藏'); },
+});
+assert.equal(navigationState.dispute, false);
+assert.equal(navigationState.todo, false);
+assert.equal(target.focused, true, '键盘焦点没有进入正文');
+console.log('正文跳转检查通过：组合筛选解除后，目标可见并获得焦点。');
+
+const handbookStart = html.indexOf("document.getElementById('extra-handbook').addEventListener('click'");
+const handbookClose = '\n  });';
+const handbookEnd = html.indexOf(handbookClose, handbookStart);
+assert.ok(handbookStart >= 0 && handbookEnd > handbookStart, '找不到额外手册的正文入口');
+const navigationCalls = [];
+let handbookClick;
+vm.runInNewContext(html.slice(handbookStart, handbookEnd + handbookClose.length), {
+  document: {getElementById(){ return {addEventListener(type, handler){ handbookClick = handler; }}; }},
+  location: {hash: '#extra-handbook'}, setMenu(){},
+  flushPendingSearch(){ navigationCalls.push('flush'); },
+  apply(){ navigationCalls.push('apply'); },
+  gotoItem(key, from){
+    assert.deepEqual(navigationCalls, ['flush', 'apply'], '正文导航前尚未处理待提交的搜索');
+    assert.equal(key, '23-30');
+    assert.equal(from, 'extra-handbook');
+  },
+});
+handbookClick({target: {closest(){ return {dataset: {handbookGo: '23-30'}}; }}, preventDefault(){}});
+console.log('快速导航检查通过：待提交搜索先处理，旧定时任务不会重新隐藏目标。');
