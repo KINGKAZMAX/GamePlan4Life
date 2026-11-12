@@ -22,9 +22,13 @@ description: 用《人生通关手册》(github.com/KINGKAZMAX/GamePlan4Life) �
 
 ## 第 1 步：把正文拿到手
 
-**本地**：当前目录或上级目录里有 `README.md` 和 `book/01-不要早死.md`，就是本地模式，直接读。
+下面三种情况按顺序看，对上哪种就用哪种。后面的命令都在「正文根目录」下跑，也就是有 `README.md` 和 `book/` 的那个目录。
 
-**远程**：没有就现取。整本 1.3 MB，浅克隆一次最省事，后面所有命令都能照常用：
+**随包自带**：这份 SKILL.md 旁边有 `references/book/`，正文根目录就是 `references/`，不用联网。下面说的 `README.md` 是 `references/README.md`，不是包根上那份安装说明。`references/VERSION.txt` 写着这份正文是哪天打的包，答复里涉及金额、时限、名单时把这个日期带上。
+
+**本地仓库**：当前目录或上级目录里有 `README.md` 和 `book/01-不要早死.md`，正文根目录就是它，直接读。
+
+**远程**：都没有就现取。整本 1.3 MB，浅克隆一次最省事，后面所有命令都能照常用：
 
 ```bash
 git clone --depth 1 https://github.com/KINGKAZMAX/GamePlan4Life.git "${TMPDIR:-/tmp}/hltb"
@@ -40,7 +44,7 @@ curl -fsSL --compressed "https://raw.githubusercontent.com/KINGKAZMAX/GamePlan4L
 
 ## 第 2 步：定位到节
 
-先挑 1 到 3 节：读仓库根目录 `README.md` 里「这本书想回答的问题」那张表（一节一行，写明这一节回答什么问题，并带着 `book/` 下对应的文件名），按用户问的事对上号。节的增删都反映在那张表里，这里不另留一份清单。
+先挑 1 到 3 节：读正文根目录 `README.md` 里「这本书想回答的问题」那张表（一节一行，写明这一节回答什么问题，并带着 `book/` 下对应的文件名），按用户问的事对上号。节的增删都反映在那张表里，这里不另留一份清单。
 
 节文件就在 `book/` 下，文件名自带节号和节名，`ls book/` 也能看全。
 
@@ -77,7 +81,7 @@ sed -n '/^### 16\. /,/^### 17\. /p' book/08-别把自己搭进去.md  # 按条�
 
 排序照书的算法，别凭感觉：
 
-1. 档位的算法以仓库根目录的 `index.html` 为准，别凭记忆写，当场把那两行抠出来照着算：
+1. 有 `index.tsv` 就直接用「性价比」那一列，它是打包时照书的算法算好的。没有索引时，档位的算法以仓库根目录的 `index.html` 为准，别凭记忆写，当场把那两行抠出来照着算：
 
    ```bash
    grep -n 'COST_W = \|e\.ratio = ' index.html
